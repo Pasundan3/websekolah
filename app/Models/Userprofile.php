@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\ParentBiodata;
+
 class Userprofile extends BaseModel
 {
     protected $casts = [
@@ -19,4 +21,14 @@ class Userprofile extends BaseModel
     {
         return $this->belongsTo(User::class);
     }
+
+   /**
+    * Get all of the parents for the Userprofile
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function parents(): HasMany
+   {
+       return $this->hasMany(ParentBiodata::class, 'user_profile_id');
+   }
 }

@@ -17,9 +17,6 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
 
-            $table->string('name');
-            $table->string('first_name');
-            $table->string('last_name');
             $table->string('username')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
@@ -31,8 +28,6 @@ return new class extends Migration
             $table->string('url_instagram')->nullable();
             $table->string('url_linkedin')->nullable();
 
-            $table->date('date_of_birth')->nullable();
-            $table->text('address')->nullable();
             $table->text('bio')->nullable();
             $table->string('avatar')->nullable();
             $table->text('user_metadata')->nullable();
@@ -41,6 +36,18 @@ return new class extends Migration
             $table->timestamp('last_login')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('status')->default(1)->unsigned();
+
+            $table->string('name');
+            $table->string('nisn')->unique();
+            $table->string('nik')->unique();
+            $table->date('date_of_birth');
+            $table->string('gender');
+            $table->string('religion');
+            $table->text('address');
+            $table->string('phone_number');
+            $table->text('sekolah_asal');
+            $table->boolean('verify_status');
+            $table->text('verify_information')->nullable();
 
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();

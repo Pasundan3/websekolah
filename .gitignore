@@ -17,7 +17,9 @@ yarn-error.log
 /.fleet
 /.vscode
 *.cache
-
+github_token.txt
+PPDB.txt
+*.drawio
 
 
 
