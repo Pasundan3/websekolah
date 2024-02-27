@@ -1,198 +1,141 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/396987/82162573-6940f500-98c7-11ea-974e-888b4f866c74.jpg" alt="Laravel Starter - A CMS like modular starter project built with the latest Laravel framework."></p>
+## Laravel 10 Starter
 
-# Laravel Starter (based on Laravel 10.x)
-**Laravel Starter** is a Laravel 10.x based simple starter project. Most of the commonly needed features of an application like `Authentication`, `Authorisation`, `User` and `Role management`, `Application Backend`, `Backup`, `Log viewer` are available here. It is modular, so you may use this project as a base and build your own modules. A module can be used in any `Laravel Starter` based projects.
+Laravel 10 Starter includes tailwindcss, livewire and several standard features like user login, register and user management for your awesome applications.
 
-Please let me know your feedback and comments.
+### Stacks
 
-# Reporting a Vulnerability
-If you discover any security-related issues, please send an e-mail to Nasir Khan Saikat via nasir8891@gmail.com instead of using the issue tracker.
+-   Laravel
+-   Tailwindcss
+-   Livewire
+-   Alpine JS
+-   Laravel Fortify
+-   Jetstream (view component only)
 
-# Appplication Demo
-Check the following demo project. It is just a straight installation of the project without any modification.
+### Feature
 
-Demo URL: https://laravel.nasirkhn.com
+-   User Login, register, change profile, change password
+-   User manager with CRUD functionality, pagination, search and sort
+-   Example resource include
+    -   Table
+    -   Text input
+    -   Textarea
+    -   Select
+    -   Checkbox
+    -   Auto code generator
+    -   Email with unique validation
+    -   Upload an avatar
+    -   Contact picker
 
-You may use the following account credentials to access the application backend.
+### Requirements
 
-```
-User: super@admin.com
-Pass: secret
+-   PHP version 8.1
+-   Composer
+-   NodeJS 18+
 
-User: user@user.com
-Pass: secret
+### Installation
 
-```
-
-## Demo Data
-If you want to test the application on your local machine with additional demo data you may use the following command.
-
-```php
-
-php artisan starter:insert-demo-data --fresh
-
-```
-
-There are options to truncate the `posts, categories, tags, and comments` tables and insert new demo data.
-
-`--fresh` option will truncate the tables, without this command new set of data will be inserted.
-
-```php
-
-php artisan starter:insert-demo-data --fresh
+Open terimal or command prompt and type below
 
 ```
-
-# Custom Commands
-
-We have created a number of custom commands for the project. The commands are listed below with a brief about their use of it.
-
-## Create New module
-
-To create a project use the following command, you have repalce the MODULE_NAME with the name of the module.
-
-```php
-php artisan module:build MODULE_NAME
+git clone https://github.com/akhmads/laravel10-starter.git
+cd laravel10-starter
+composer install
+composer update
+npm install
+npm update
+npm run build
 ```
 
-You may want to use `--force` option to overwrite the existing module. if you use this option, it will replace all the exisitng files with the defalut stub files.
+Copy file .env.example to .env file and setting your database account
 
-```php
-php artisan module:build MODULE_NAME --force
+```
+...
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=laravel
+DB_USERNAME=postgres
+DB_PASSWORD=YourPassword
+...
 ```
 
-## Clear All Cache
+Then run database migrate and run the server
 
-```bash
-composer clear-all
+```
+php artisan key:generate
+php artisan migrate
+php artisan serve
 ```
 
-this is a shortcut command clear all cache including config, route, and more
+Open the address http://127.0.0.1:8000 on your browser
 
-## Code Style Fix
+### Screenshot
 
-We are now using `Laravel Pint` to make the code style stays clean and consistent as the Laravel Framework. Use the following command to apply CS-Fix.
+![Screenshot](https://raw.githubusercontent.com/akhmads/laravel10-starter/main/preview.png)
 
-```bash
-composer pint
-```
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-## Role - Permissions
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-Several custom commands are available to add and update `role-permissions`. Please read the [Role - Permission Wiki page](https://github.com/nasirkhan/laravel-starter/wiki/Role-Permission), where you will find the list of commands with examples.
+## About Laravel
 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-# Features
+-   [Simple, fast routing engine](https://laravel.com/docs/routing).
+-   [Powerful dependency injection container](https://laravel.com/docs/container).
+-   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+-   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+-   [Robust background job processing](https://laravel.com/docs/queues).
+-   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-The `Laravel Starter` comes with several features which are the most common in almost all applications. It is a template project which means it is intended to build in a way that it can be used for other projects.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-It is a modular application, and some modules are installed by default. It will be helpful to use it as a base for future applications.
+## Learning Laravel
 
-* Admin feature and public views are completely separated as `Backend` and `Frontend` namespace.
-* Major features are developed as `Modules`. A module like Posts, Comments, and Tags are separated from the core features like User, Role, Permission
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-## Core Features
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-* User Authentication
-* Social Login
-  * Google
-  * Facebook
-  * Github
-  * Build in a way adding more is much easy now
-* User Profile with Avatar
-  * Separate User Profile table
-* Role-Permissions for Users
-* Dynamic Menu System
-* Language Switcher
-* Localization enabled across the project
-* Backend Theme
-  * Bootstrap 5, CoreUI
-  * Fontawesome 6
-* Frontend Theme
-  * Tailwind
-  * Fontawesome 6
-* Article Module
-  * Posts
-  * Categories
-  * Tags
-  * Comments
-  * wysiwyg editor
-  * File browser
-* Application Settings
-* External Libraries
-  * Bootstrap 5
-  * Fontawesome 6
-  * CoreUI
-  * Tailwind
-  * Datatables
-  * Select2
-  * Date Time Picker
-* Backup (Source, Files, Database as Zip)
-* Log Viewer
-* Notification
-  * Dashboard and details view
+## Laravel Sponsors
 
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-# User Guide
+### Premium Partners
 
-## Installation
+-   **[Vehikl](https://vehikl.com/)**
+-   **[Tighten Co.](https://tighten.co)**
+-   **[WebReinvent](https://webreinvent.com/)**
+-   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+-   **[64 Robots](https://64robots.com)**
+-   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+-   **[Cyber-Duck](https://cyber-duck.co.uk)**
+-   **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+-   **[Jump24](https://jump24.co.uk)**
+-   **[Redberry](https://redberry.international/laravel/)**
+-   **[Active Logic](https://activelogic.com)**
+-   **[byte5](https://byte5.de)**
+-   **[OP.GG](https://op.gg)**
 
-Follow the steps mentioned below to install and run the project. You may find more details about the installation in [Installation Wiki](https://github.com/nasirkhan/laravel-starter/wiki/Installation).
+## Contributing
 
-1. Clone or download the repository
-2. Go to the project directory and run `composer install`
-3. Create `.env` file by copying the `.env.example`. You may use the command to do that `cp .env.example .env`
-4. Update the database name and credentials in `.env` file
-5. Run the command to generate application key `php artisan key:generate`
-6. Run the command `php artisan migrate --seed`
-7. Link storage directory: `php artisan storage:link`
-8. You may create a virtualhost entry to access the application or run `php artisan serve` from the project root and visit `http://127.0.0.1:8000`
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-*After creating the new permissions use the following commands to update cashed permissions.*
+## Code of Conduct
 
-`php artisan cache:forget spatie.permission.cache`
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Docker and Laravel Sail
-This project is configured with Laravel Sail (https://laravel.com/docs/sail). You can use all the docker functionalities here. To install using docker and sail:
+## Security Vulnerabilities
 
-1. Clone or download the repository
-2. Go to the project directory and run `composer install`
-3. Create `.env` file by copying the `.env-sail`. You may use the command to do that `cp .env-sail .env`
-4. Update the database name and credentials in `.env` file
-5. Run the command `sail up` (consider adding this to your alias: `alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'`)
-6. Run the command `sail artisan migrate --seed`
-7. Link storage directory: `sail artisan storage:link`
-8. Since Sail is already up, you can just visit http://localhost:80
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## Icons
-FontAwesome & CoreUI Icons, two different font icon library is installed for the Backend theme and only FontAwesome for the Frontend. For both of the cases, we used the free version. You may install the pro version separately for your project.
+## License
 
-* **FontAwesome** - https://fontawesome.com
-
-
-# Screenshots
-
-__Home Page__
-
-![Laravel Starter Home](https://github.com/nasirkhan/laravel-starter/assets/396987/027a2c39-09f4-440f-90a9-955aff51eb85)
-
-__Login Page__
-
-![Laravel Starter Login](https://user-images.githubusercontent.com/396987/164892620-3b4c8b1b-81c8-4630-a39f-38dadff89a7d.png)
-
-__Posts Page__
-
-![Laravel Starter Posts Page](https://github.com/nasirkhan/laravel-starter/assets/396987/bc184450-0f87-4471-a022-abf31337bef4)
-
-__Backend Dashboard__
-
-![Backend Dashboard](https://github.com/nasirkhan/laravel-starter/assets/396987/b9ca9cd8-fa7c-43f0-b54f-47e7c4966d9c)
-
----
-
-![List-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/413b3c75-4a1f-47e3-8885-bc6bd475213c)
-
----
-
-![Edit-Posts-Laravel-Starter](https://github.com/nasirkhan/laravel-starter/assets/396987/b067e211-1208-49a6-859b-7a6810e3f3bb)
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
