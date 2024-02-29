@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('last_education');
             $table->string('working_as');
-            $table->string('varchar');
+            $table->string('income');
+            $table->string('parent_status');
             $table->UnsignedBigInteger('student_id');
             $table->timestamps();
 
