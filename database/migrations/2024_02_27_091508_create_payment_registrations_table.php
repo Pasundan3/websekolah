@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('registration_id');
             $table->text('image_url'); //bukti pembayaran
-            $table->varchar('amount');
-            $table->varchar('remaining_amount');
+            $table->string('amount');
+            $table->string('remaining_amount');
             $table->timestamps();
         });
     }
