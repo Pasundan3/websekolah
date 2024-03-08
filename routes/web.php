@@ -42,3 +42,10 @@ Route::get('/sys/clear', function () {
     Artisan::call('route:clear');
     dump(Artisan::output());
 });
+
+// Student 
+Route::get('/student/create', [\App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
+Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
+Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
+Route::delete('/student/{id}', [\App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
+Route::get('/student/{id}', [\App\Http\Controllers\StudentController::class, 'show'])->name('student.show');

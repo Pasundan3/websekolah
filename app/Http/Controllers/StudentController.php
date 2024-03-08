@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -22,7 +23,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        
+        return view('student.create');
     }
 
     /**
@@ -30,19 +31,25 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        Student::create([
-            'name' => $request->name,
-            'nisn' => $request->nisn,
-            'nik' => $request->nik,
-            'date_of_birth' => $request->date_of_birth,
-            'gender' => $request->gender,
-            'religion' => $request->religion,
-            'address' => $request->address,
-            'last_education' => $request->last_education,
-            'user_id' => Auth::id()
-        ]);
+        try{
+            Student::create([
+                'name' => $request->name,
+                'nisn' => $request->nisn,
+                'nik' => $request->nik,
+                'date_of_birth' => Carbon::parse("20-12-03"),
+                'gender' => $request->gender,
+                'religion' => $request->religion,
+                'address' => $request->address,
+                'last_education' => $request->last_education,
+                'phone_number' => $request->phone_number,
+                'user_id' => 1,
+                'verify_status' => false
+            ]);
+            echo "berhasil";
+        }catch(\Exception $e){
+            dd($e);
+        }
 
-        return redirect()->back()->with(['success' => 'Data berhasil disimpan']);
     }
 
     /**
@@ -79,11 +86,14 @@ class StudentController extends Controller
                 'name' => $request->name,
                 'nisn' => $request->nisn,
                 'nik' => $request->nik,
-                'date_of_birth' => $request->date_of_birth,
+                'date_of_birth' => Carbon::parse("20-12-03"),
                 'gender' => $request->gender,
                 'religion' => $request->religion,
                 'address' => $request->address,
                 'last_education' => $request->last_education,
+                'phone_number' => $request->phone_number,
+                'user_id' => 1,
+                'verify_status' => false
             ]);
 
         }catch(\Exception $e){
