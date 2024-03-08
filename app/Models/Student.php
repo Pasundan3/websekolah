@@ -10,6 +10,20 @@ use App\Models\Registration;
 class Student extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'nisn',
+        'nik',
+        'date_of_birth',
+        'gender',
+        'religion',
+        'address',
+        'phone_number',
+        'last_education',
+        'verify_status',
+        'user_id',
+        'verify_information'
+    ];
 
     /**
      * Get the user that owns the Student
