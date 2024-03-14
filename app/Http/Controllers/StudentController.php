@@ -7,6 +7,8 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Models\Registration;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -32,7 +34,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         try{
-            Student::create([
+            $student = Student::create([
                 'name' => $request->name,
                 'nisn' => $request->nisn,
                 'nik' => $request->nik,
@@ -45,7 +47,15 @@ class StudentController extends Controller
                 'user_id' => 1,
                 'verify_status' => false
             ]);
-            echo "berhasil";
+
+            $uniqueId = Str::random(10);
+            $registration = Registration::create([
+                'registration_uid' => $uniqueId,
+                'student_id' => $student->id,
+                'status' => 'daftar'
+            ]);
+
+            return view('xxx', ['student' => $student, 'registration'=>$registration]);
         }catch(\Exception $e){
             dd($e);
         }
@@ -96,6 +106,8 @@ class StudentController extends Controller
                 'verify_status' => false
             ]);
 
+            return view('xxx', ['student' => $student]);
+
         }catch(\Exception $e){
             // Should return error
         }
@@ -109,8 +121,10 @@ class StudentController extends Controller
         try{
             $student = Student::findOrFail($id);
             $student->delete();
+
+            return view('xxx')->with(['success' => 'Delete student successfully']);
         }catch(\Exception $e){
-            // should return error
+            return view('xxx')->with(['error' => 'there is an error']);
         }
     }
 }
