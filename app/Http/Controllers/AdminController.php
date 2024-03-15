@@ -18,7 +18,7 @@ class AdminController extends Controller
         }else{
             
             if ($status == 'accept'){
-                $data->verify_status = "accept";
+                $data->verify_status = true;
                 $data->save();  
 
                 if ($data->wasChanged()){
@@ -33,7 +33,7 @@ class AdminController extends Controller
                 $this->validate($request, [
                     'verify_information' => 'required'
                 ]);
-                $data->verify_status = "reject";
+                $data->verify_status = false;
                 $data->verify_information = $request->verify_information;
                 $data->save();
 
@@ -64,4 +64,6 @@ class AdminController extends Controller
             echo "Gagal mengupdate status verifikasi";
         }
     }
+
+    public function export_all_student_data(){}
 }
