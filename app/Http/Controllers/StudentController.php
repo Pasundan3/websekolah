@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Models\Registration;
 use Illuminate\Support\Str;
+use App\Models\Family;
 
 class StudentController extends Controller
 {
@@ -34,11 +35,13 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         try{
+            $date_of_birth_student = Carbon::parse($request->date_of_birth);
+
             $student = Student::create([
                 'name' => $request->name,
                 'nisn' => $request->nisn,
                 'nik' => $request->nik,
-                'date_of_birth' => Carbon::parse("20-12-03"),
+                'date_of_birth' => $date_of_birth_student->format('M d Y'),
                 'gender' => $request->gender,
                 'religion' => $request->religion,
                 'address' => $request->address,
@@ -46,6 +49,53 @@ class StudentController extends Controller
                 'phone_number' => $request->phone_number,
                 'user_id' => 1,
                 'verify_status' => false
+            ]);
+
+            $mother = Family::create([
+                'name' => $request->name_ibu,
+                'nik' => $request->nik_ibu,
+                'date_of_birth' => $request->date_of_birth_ibu,
+                'gender' => $request->gender_ibu,
+                'religion' => $request->religion_ibu,
+                'address' => $request->address_ibu,
+                'last_education' => $request->last_education_ibu,
+                'phone_number' => $request->phone_number_ibu,
+                'working_as' => $request->working_as,
+                'income' => $request->income,
+                'parent_status' => 'ibu',
+                'student_id' => $student->id
+            ]);
+
+            $father = Family::create([
+                'name' => $request->name_ayah,
+                'nik' => $request->nik_ayah,
+                'date_of_birth' => $request->date_of_birth_ayah,
+                'gender' => $request->gender_ayah,
+                'religion' => $request->religion_ayah,
+                'address' => $request->address_ayah,
+                'last_education' => $request->last_education_ayah,
+                'phone_number' => $request->phone_number_ayah,
+                'working_as' => $request->working_as,
+                'income' => $request->income,
+                'parent_status' => 'ayah',
+                'student_id' => $student->id
+            ]);
+
+            // Should check if family type is wali so it must only wali
+            // And should check if there is only one parent, father or mother
+            $wali = Family::create([
+                'name' => $request->name_wali,
+                'nik' => $request->nik_wali,
+                'date_of_birth' => $request->date_of_birth_wali,
+                'gender' => $request->gender_wali,
+                'religion' => $request->religion_wali,
+                'address' => $request->address_wali,
+                'last_education' => $request->last_education_wali,
+                'phone_number' => $request->phone_number_wali,
+                'working_as' => $request->working_as,
+                'income' => $request->income,
+                'parent_status' => 'wali',
+                'student_id' => $student->id
             ]);
 
             $uniqueId = Str::random(10);
