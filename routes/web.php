@@ -49,3 +49,9 @@ Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'
 Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
 Route::delete('/student/{id}', [\App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
 Route::get('/student/{id}', [\App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
+
+
+// Admin
+Route::get('admin/export-students', [\App\Http\Controllers\AdminController::class, 'export_students'])->name('admin_export_students');  
+Route::get('admin/unverified-students',[\App\Http\Controllers\AdminController::class, 'unverified_student_data'])->name('admin_unverified_user_data'); 
+Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin_verifikasi_berkas');
