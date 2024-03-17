@@ -66,6 +66,10 @@ Route::get('admin/export-students', [\App\Http\Controllers\AdminController::clas
 Route::get('admin/unverified-students',[\App\Http\Controllers\AdminController::class, 'unverified_student_data'])->name('admin.unverified_user_data'); 
 Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin.verifikasi_berkas');
 Route::get('admin/verify-student/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'detail_student'])->name('admin.student_detail');
+Route::get('admin/export-students', [\App\Http\Controllers\AdminController::class, 'export_students'])->name('admin_export_students');  
+Route::get('admin/unverified-students',[\App\Http\Controllers\AdminController::class, 'unverified_student_data'])->name('admin_unverified_user_data'); 
+Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin_verifikasi_berkas');
+
 // Fallback route for handling 404 errors for guests
 Route::fallback(function (Request $request) {
     // Check if the user is authenticated
