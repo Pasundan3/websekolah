@@ -75,6 +75,15 @@ class AdminController extends Controller
 
     public function unverified_student_data(){
         $data = Student::where('verify_status', false)->with('families')->with('registration')->get();
+        foreach($data as $x){
+            $x->registration;
+            $x->family;
+        }
         return view('admin.unverified-student', compact('data'));
+    }
+
+    public function detail_student($registration_uid){
+        $data = Registration::where('registration_uid', $registration_uid)->with('student')->with('student.families')->first();
+        dd($data);
     }
 }
