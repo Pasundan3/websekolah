@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Student;
 use App\Models\Registration;
-
+use App\Exports\ExportStudents;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -16,16 +17,19 @@ class AdminController extends Controller
         if (!$data){
             echo "Data dengan nomor pendaftaran sekian tidak ditemukan";
         }else{
-            
+            // dd($data);
             if ($status == 'accept'){
-                $data->verify_status = true;
+                $data->student->update(['verify_status' => true]);
+                $data->status = 'accept';
                 $data->save();  
 
-                if ($data->wasChanged()){
+                if ($data){
                     echo "Berhasil update status verifikasi";
+                    dd("berhasil update status ");
                     // Should return redirect page to input biaya pendidikan
                 }else{
                     echo "Gagal mengupdate status verifikasi";
+                    dd($data->errors());
                 }
     
             }else{
@@ -33,8 +37,8 @@ class AdminController extends Controller
                 $this->validate($request, [
                     'verify_information' => 'required'
                 ]);
-                $data->verify_status = false;
-                $data->verify_information = $request->verify_information;
+                $data->student->verify_status = false;
+                $data->student->verify_information = $request->verify_information;
                 $data->save();
 
                 if ($data->wasChanged()){
@@ -65,5 +69,12 @@ class AdminController extends Controller
         }
     }
 
-    public function export_all_student_data(){}
+    public function export_students(){
+        return Excel::download(new ExportStudents, 'student.xlsx');
+    }
+
+    public function unverified_student_data(){
+        $data = Student::where('verify_status', false)->with('families')->with('registration')->get();
+        return view('admin.unverified-student', compact('data'));
+    }
 }
