@@ -53,8 +53,8 @@ class Student extends Model
      *
      * @return \IlluminaRegistrationatabase\Eloquent\Relations\HasOne
      */
-    public function registration(): HasOne
+    public function registration()
     {
-        return $this->hasOne(Registration::class);
+        return $this->hasOne(Registration::class, 'student_id');
     }
 }
