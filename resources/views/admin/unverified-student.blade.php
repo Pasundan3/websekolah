@@ -1,12 +1,6 @@
+@extends('admin.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@section('content')
 <table>
     <thead>
         <tr>
@@ -17,14 +11,17 @@
         </tr>
     </thead>
     <tbody>
+        
         @foreach ($data as $item)
             <tr>
                 <td>{{ $item->registration->registration_uid}}</td>
                 <td>{{ $item->name }}</td>
                 <!-- Add more table cells for other data -->
                 <td>
-                    <a href="{{ route('admin.student_detail', ['registration_uid' => $item->registration->registration_uid]) }}" class="btn btn-primary">View Details</a>
+                    <a href="{{ route('admin.student_detail', ['registration_uid' => $item->registration->registration_uid])}}" class="btn btn-primary">View Details</a>
                     <!-- Adjust the route and button text as needed -->
+                    <a href="{{route('admin_verifikasi_berkas', ['registration_uid' => $item->registration->registration_uid, 'status' => 'accept'])}}" class="btn btn-secondary">Terima</a>
+                    <a href="{{route('admin_verifikasi_berkas', ['registration_uid' => $item->registration->registration_uid, 'status' => 'reject'])}}" class="btn btn-danger">Tolak</a>
                 </td>
             </tr>
         @endforeach
@@ -35,5 +32,5 @@
         @csrf
         <button type="submit">klik</button>
     </form>
-</body>
-</html>
+
+@endsection
