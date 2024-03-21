@@ -20,8 +20,14 @@
                 <td>
                     <a href="{{ route('admin.student_detail', ['registration_uid' => $item->registration->registration_uid])}}" class="btn btn-primary">View Details</a>
                     <!-- Adjust the route and button text as needed -->
-                    <a href="{{route('admin_verifikasi_berkas', ['registration_uid' => $item->registration->registration_uid, 'status' => 'accept'])}}" class="btn btn-secondary">Terima</a>
-                    <a href="{{route('admin_verifikasi_berkas', ['registration_uid' => $item->registration->registration_uid, 'status' => 'reject'])}}" class="btn btn-danger">Tolak</a>
+                    <form action="{{route('admin_verifikasi_berkas', ['registration_uid' => $item->registration->registration_uid, 'status' => 'accept'])}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-secondary">verifikasi</button>
+                    </form>
+                    <form action="{{route('admin_verifikasi_berkas', ['registration_uid' => $item->registration->registration_uid, 'status' => 'reject'])}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Tolak</button>
+                    </form>
                 </td>
             </tr>
         @endforeach
