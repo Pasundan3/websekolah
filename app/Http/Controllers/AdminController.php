@@ -19,17 +19,13 @@ class AdminController extends Controller
         }else{
             // dd($data);
             if ($status == 'accept'){
-                $data->student->update(['verify_status' => true]);
-                $data->status = 'accept';
-                $data->save();  
+                try{
+                    $data->student->update(['verify_status' => true]);
+                    $data->save();  
 
-                if ($data){
-                    echo "Berhasil update status verifikasi";
-                    dd("berhasil update status ");
-                    // Should return redirect page to input biaya pendidikan
-                }else{
-                    echo "Gagal mengupdate status verifikasi";
-                    dd($data->errors());
+                    echo 'berhasil verifikasi berkas';
+                }catch(\Exception $e){
+                    echo $e->getMessage();
                 }
     
             }else{
@@ -37,15 +33,51 @@ class AdminController extends Controller
                 $this->validate($request, [
                     'verify_information' => 'required'
                 ]);
-                $data->student->verify_status = false;
-                $data->student->verify_information = $request->verify_information;
-                $data->save();
+                try{
+                    $data->student->update(['verify_status' => false, 'verify_information' => $request->verify_information]);
+                    $data->save();
 
-                if ($data->wasChanged()){
                     echo "Berhasil update status verifikasi";
-                    // Should return redirect page to input biaya pendidikan
-                }else{
-                    echo "Gagal mengupdate status verifikasi";
+                }catch(\Exception $e){
+                    echo $e->getMessage();
+                }
+            }
+        }
+    }
+
+    public function accepting_student(){
+        $data = Registration::where('status != ?', 'accept')->with('student')->get();
+
+        return view('admin.accepting-student', ['data' => $data]);
+    }
+    public function accept_reject_application(Request $request, $registration_uid, $status){
+        $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
+        if(!$data){
+            echo "Data dengan nomor pendaftaran sekian tidak ditemukan";
+        }else{
+            if ($status == 'accept'){
+                try{
+                    $data->student->update(['verify_status' => true]);
+                    $data->save();  
+
+                    echo 'berhasil update status verifikasi';
+                    return redirect()->route('admin.create_biaya_pendidikan', ['registration_uid' => $registration_uid]);
+                }catch(\Exception $e){
+                    echo $e->getMessage();
+                }
+    
+            }else{
+                // validate information why application is rejected
+                $this->validate($request, [
+                    'verify_information' => 'required'
+                ]);
+                try{
+                    $data->student->update(['verify_status' => false, 'verify_information' => $request->verify_information]);
+                    $data->save();
+
+                    echo "Berhasil update status verifikasi";
+                }catch(\Exception $e){
+                    echo $e->getMessage();
                 }
             }
         }
@@ -55,18 +87,21 @@ class AdminController extends Controller
         $this->validate($request,[
             'biaya_pendidikan' => 'required|numeric'
         ]);
+        try{
+            $data = Registration::where("registration_uid", $registration_uid)->first();
+    
+            $data->amount = $request->biaya_pendidikan;
+            $data->save();
 
-        $data = Registration::where("registration_uid", $registration_uid)->first();
-
-        $data->amount = $request->biaya_pendidikan;
-        $data->save();
-
-        if ($data->wasChanged()){
-            echo "Berhasil update status verifikasi";
-            // Should return redirect page to input biaya pendidikan
-        }else{
-            echo "Gagal mengupdate status verifikasi";
+            echo "Berhasil menambahkan biaya pendidikan";
+        }catch(\Exception $e){
+            echo $e->getMessage();
         }
+    }
+
+    public function create_biaya_pendidikan($registration_uid){
+        $data = Registration::where('registration_uid', $registration_uid)->with(['student', 'student.families'])->first();
+        return view('admin.input-biaya', ['data' => $data]);
     }
 
     public function export_students(){
@@ -74,7 +109,7 @@ class AdminController extends Controller
     }
 
     public function unverified_student_data(){
-        $data = Student::with('families')->with('registration')->where('verify_status', false)->take(1)->get();
+        $data = Student::with('families')->with('registration')->where('verify_status', false)->get();
         return view('admin.unverified-student', ['data' => $data]);
     }
 
