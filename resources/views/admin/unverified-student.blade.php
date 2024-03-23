@@ -34,9 +34,4 @@
     </tbody>
 </table>
 
-    <form action="{{route('admin_verifikasi_berkas', ['registration_uid' => '5xQWfDzG3l', 'status' => 'accept'])}}" method="post">
-        @csrf
-        <button type="submit">klik</button>
-    </form>
-
 @endsection
