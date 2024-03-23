@@ -71,6 +71,7 @@ Route::get('admin/unverified-students',[\App\Http\Controllers\AdminController::c
 Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin_verifikasi_berkas');
 Route::get('admin/input-biaya-pendidikan', [\App\Http\Controllers\AdminController::class, 'create_biaya_pendidikan'])->name('admin.create_biaya_pendidikan');
 Route::post('admin/input-biaya-pendidikan', [\App\Http\Controllers\AdminController::class, 'input_biaya_pendidikan'])->name('admin.input_biaya_pendidikan');
+Route::post('admin/accept-administration', [\App\Http\Controllers\AdminController::class, 'accept_reject_application'])->name('admin.accept_reject_application');
 
 // Fallback route for handling 404 errors for guests
 Route::fallback(function (Request $request) {
