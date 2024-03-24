@@ -58,7 +58,7 @@ Route::get('/student/create', [\App\Http\Controllers\StudentController::class, '
 Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
 Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
 Route::delete('/student/{id}', [\App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
-Route::get('/student/{id}', [\App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
+Route::get('/student/{registration_uid}', [\App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
 
 
 // Admin
