@@ -15,17 +15,16 @@ class AdminController extends Controller
     {
         $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
         if (!$data){
-            echo "Data dengan nomor pendaftaran sekian tidak ditemukan";
+            return redirect()->back()->withErrors(['error', 'data dengan nomor registrasi '+$registration_uid+' tidak ditemukan']);
         }else{
             // dd($data);
             if ($status == 'accept'){
                 try{
                     $data->student->update(['verify_status' => true]);
                     $data->save();  
-
-                    echo 'berhasil verifikasi berkas';
+                    return redirect()->back()->with('success', 'berhasil verifikasi berkas');
                 }catch(\Exception $e){
-                    echo $e->getMessage();
+                    return redirect()->back()->withErrors(['error', $e->getMessage()]);
                 }
     
             }else{
@@ -37,47 +36,47 @@ class AdminController extends Controller
                     $data->student->update(['verify_status' => false, 'verify_information' => $request->verify_information]);
                     $data->save();
 
-                    echo "Berhasil update status verifikasi";
+                    return redirect()->back()->with('success', 'berhasil verifikasi berkas');
                 }catch(\Exception $e){
-                    echo $e->getMessage();
+                    return redirect()->back()->withErrors(['error', $e->getMessage()]);
                 }
             }
         }
     }
 
     public function accepting_student(){
-        $data = Registration::where('status != ?', 'accept')->with('student')->get();
+        $data = Registration::where('status = ?', 'daftar')->with('student')->get();
 
         return view('admin.accepting-student', ['data' => $data]);
     }
     public function accept_reject_application(Request $request, $registration_uid, $status){
         $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
         if(!$data){
-            echo "Data dengan nomor pendaftaran sekian tidak ditemukan";
+            return redirect()->back()->withErrors(['error', 'data dengan nomor registrasi '+$registration_uid+' tidak ditemukan']);
         }else{
             if ($status == 'accept'){
                 try{
-                    $data->student->update(['verify_status' => true]);
-                    $data->save();  
+                    $data->status = 'accept';
+                    $data->save();
 
-                    echo 'berhasil update status verifikasi';
                     return redirect()->route('admin.create_biaya_pendidikan', ['registration_uid' => $registration_uid]);
                 }catch(\Exception $e){
-                    echo $e->getMessage();
+                    return redirect()->back()->withErrors(['error', $e->getMessage()]);
                 }
     
             }else{
                 // validate information why application is rejected
                 $this->validate($request, [
-                    'verify_information' => 'required'
+                    'status_information' => 'required'
                 ]);
                 try{
-                    $data->student->update(['verify_status' => false, 'verify_information' => $request->verify_information]);
+                    $data->status = 'reject';
+                    $data->status_information = $request->status_information;
                     $data->save();
 
-                    echo "Berhasil update status verifikasi";
+                    return redirect()->back()->with('success', 'berhasil mengubah status');
                 }catch(\Exception $e){
-                    echo $e->getMessage();
+                    return redirect()->back()->withErrors(['error', $e->getMessage()]);
                 }
             }
         }
@@ -93,9 +92,9 @@ class AdminController extends Controller
             $data->amount = $request->biaya_pendidikan;
             $data->save();
 
-            echo "Berhasil menambahkan biaya pendidikan";
+            return redirect()->back()->with('success', 'berhasil menambah biaya pendidikan');
         }catch(\Exception $e){
-            echo $e->getMessage();
+            return redirect()->back()->withErrors(['error', $e->getMessage()]);
         }
     }
 
