@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('registration_uid')->unique();
             $table->unsignedBigInteger('student_id');
             $table->string('status')->nullable();
+            $table->string('status_information')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
