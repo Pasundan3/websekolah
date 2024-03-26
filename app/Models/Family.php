@@ -17,6 +17,20 @@ class Family extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    protected $fillable = [
+        'name',
+        'nik',
+        'date_of_birth',
+        'gender',
+        'religion',
+        'address',
+        'phone_number',
+        'last_education',
+        'working_as',
+        'income',
+        'parent_status',
+        'student_id'
+    ];
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_id');
