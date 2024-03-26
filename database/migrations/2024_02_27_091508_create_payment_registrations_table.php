@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('payment_registrations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('registration_id');
-            $table->text('image_url'); //bukti pembayaran
             $table->string('amount');
             $table->string('remaining_amount');
             $table->timestamps();

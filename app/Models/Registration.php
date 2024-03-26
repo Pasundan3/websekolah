@@ -37,8 +37,13 @@ class Registration extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function payment_registration(): HasOne
+    public function payment_registration(): HasMany
     {
-        return $this->hasOne(PaymentRegistration::class);
+        return $this->hasMany(PaymentRegistration::class);
+    }
+
+    public function payment_histories(): HasMany
+    {
+        return $this->hasMany(PaymentHistory::class);
     }
 }

@@ -10,6 +10,13 @@ class PaymentRegistration extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'registration_id',
+        'image_url',
+        'amount',
+        'remaining_amount'
+    ];
+
     /**
      * Get the registration that owns the PaymentRegistration
      *

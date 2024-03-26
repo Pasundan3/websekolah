@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\Student;
 use App\Models\Registration;
 use App\Exports\ExportStudents;
+use App\Models\PaymentRegistration;
+use App\Models\PaymentHistory;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -92,7 +94,38 @@ class AdminController extends Controller
             $data->amount = $request->biaya_pendidikan;
             $data->save();
 
+            $payment_registration = new PaymentRegistration;
+            $payment_registration->registration_uid = $registration_uid;
+            $payment_registration->amount = $data->amount;
+            $payment_registration->remaining_amount = $data->amount;
+
             return redirect()->back()->with('success', 'berhasil menambah biaya pendidikan');
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error', $e->getMessage()]);
+        }
+    }
+
+    public function input_pembayaran(Request $request, $registration_uid){
+        try{
+            $this->validate($request,[
+                'amount'
+            ]);
+            $register_siswa = Registration::where("registration_uid", $registration_uid)->with(['payment_registration', 'payment_history'])->first();
+            // add data to eloquent:
+
+            // add to payment_history
+            $history = new PaymentHistory;
+            $history->registration_id = $register_siswa->id;
+            $history->amount = $request->amount;
+            // should add image_url
+            $history->save();
+
+            // add to payment_registration
+            $register_siswa->payment_registration->remaining_amount = ($register_siswa->amount - $request->amount);
+            $register_siswa->payment_registration->save();
+
+            return redirect()->back()->with('success', 'berhasil melakukan pembayaran');
+
         }catch(\Exception $e){
             return redirect()->back()->withErrors(['error', $e->getMessage()]);
         }
