@@ -141,7 +141,11 @@ class AdminController extends Controller
     }
 
     public function unverified_student_data(){
-        $data = Student::with('families')->with('registration')->where('verify_status', false)->get();
+        $data = Student::with('families')->with('registration')->where('verify_status', false)->whereExists(function ($query) {
+            $query->select('id')
+                  ->from('registrations')
+                  ->whereColumn('registrations.student_id', 'students.id');
+        })->get();
         return view('admin.unverified-student', ['data' => $data]);
     }
 
