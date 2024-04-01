@@ -194,4 +194,21 @@ class StudentController extends Controller
         }
     }
 
+    public function check_registration(Request $request){
+        try{
+            $this->validate($request, [
+                'registration_uid' => 'required'
+            ]);
+            $registration_uid = $request->registration_uid;
+            $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
+            return view('student.check-registration', ['data' => $data]);
+        }catch(\Exception $e){
+            return view('student.check-registration')->withErrors(['error', $e->getMessage()]);
+        }
+    }
+
+    public function check_registration_view(){
+        return view('student.check-registration');
+    }
+
 }
