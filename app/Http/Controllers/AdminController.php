@@ -47,7 +47,7 @@ class AdminController extends Controller
     }
 
     public function accepting_student(){
-        $data = Registration::where('status = ?', 'daftar')->with('student')->get();
+        $data = Registration::where('status = ?', 'daftar')->where('students.verify_status = ?', true)->with('student')->get();
 
         return view('admin.accepting-student', ['data' => $data]);
     }
