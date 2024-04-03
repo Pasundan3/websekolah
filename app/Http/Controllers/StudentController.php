@@ -211,4 +211,38 @@ class StudentController extends Controller
         return view('student.check-registration');
     }
 
+    public function check_remaining_amount($registration_uid){
+        $data = Registration::where('registration_uid', $registration_uid)->with('payment_registration')->first();
+        return view('student.check-remaining-amount', ['data' => $data]);
+    }
+
+    public function check_payment_history($registration_uid){
+        $data = Registration::where('registration_uid', $registration_uid)->with('payment_histories')->first();
+        return view('student.check-payment-histories', ['data' => $data]);
+    }
+
+    public function pay_remaining_amount(Request $request, $registration_uid){
+        try{
+            $this->validate($request, [
+                'amount' => 'required'
+            ]);
+
+            $data = Registration::where('registrations.registration_uid', $registration_uid)->with('payment_registration')->first();
+            if ($data->payment_registration->remaining_amount > 0){
+
+                $payment_history = PaymentHistory::create([
+                    'registration_id' => $data->id,
+                    'amount' => $request->amount
+                ]);
+                $remaining_amount = $data->payment_registration->remaining_amount - $request->amount;
+                if ($remaining_amount <= 0){
+                    $data->payment_registration->remaining_amount = 0;
+                    $data->save();
+                } 
+            }
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error', $e->getMessage()]);
+        }
+    }
+
 }
