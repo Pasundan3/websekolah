@@ -14,6 +14,7 @@ use App\Http\Controllers\LandingPageController;
 |
 */
 // landing page
+// masukkin data statis
 Route::get('/', [LandingPageController::class, 'index'])->name('root');
 Route::get('/profile', [LandingPageController::class, 'profile'])->name('profile');
 Route::get('/profile/visi-misi', [LandingPageController::class, 'visi_misi'])->name('visi-misi');
@@ -61,10 +62,10 @@ Route::middleware(['auth','checkRole:siswa'])->group(function () {
     Route::delete('/student/{id}', [\App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
     Route::get('/student/{registration_uid}', [\App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
     Route::get('/student',[\App\Http\Controllers\StudentController::class, 'index'])->name('student.index');  
+    // 
     Route::get('/student/check-registration', [\App\Http\Controllers::class, 'check_registration_view'])->name('student.check-registration.view');
     Route::post('/student/check-registration', [\App\Http\Controllers::class, 'check_registration'])->name('student.check-registration');
-    Route::get('/student/cek-sisa-pembayaran', [\App\Http\Controllers::class, 'check_remaining_amount'])->name('student.check-remaining-amount');
-      
+    Route::get('/student/cek-sisa-pembayaran', [\App\Http\Controllers::class, 'check_remaining_amount'])->name('student.check-remaining-amount');  
 });
 
 
@@ -74,9 +75,6 @@ Route::middleware(['auth','checkRole:admin'])->group(function () {
     Route::get('admin/unverified-students',[\App\Http\Controllers\AdminController::class, 'unverified_student_data'])->name('admin.unverified_user_data'); 
     Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin.verifikasi_berkas');
     Route::get('admin/verify-student/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'detail_student'])->name('admin.student_detail');
-    Route::get('admin/export-students', [\App\Http\Controllers\AdminController::class, 'export_students'])->name('admin_export_students');  
-    Route::get('admin/unverified-students',[\App\Http\Controllers\AdminController::class, 'unverified_student_data'])->name('admin.unverified_user_data'); 
-    Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin_verifikasi_berkas');
     Route::get('admin/input-biaya-pendidikan', [\App\Http\Controllers\AdminController::class, 'create_biaya_pendidikan'])->name('admin.create_biaya_pendidikan');
     Route::post('admin/input-biaya-pendidikan', [\App\Http\Controllers\AdminController::class, 'input_biaya_pendidikan'])->name('admin.input_biaya_pendidikan');
     Route::post('admin/accept-administration', [\App\Http\Controllers\AdminController::class, 'accept_reject_application'])->name('admin.accept_reject_application');    
