@@ -32,7 +32,7 @@ class FamilyFactory extends Factory
             'working_as' => 'pengangguran',
             'income' => '3000000',
             'parent_status' => $faker->randomElement($relationships),
-            'student_id' => rand(1, 100),
+            'student_id' => rand(7, 21),
         ];
     }
 }

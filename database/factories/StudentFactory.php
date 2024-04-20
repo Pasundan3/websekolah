@@ -29,7 +29,7 @@ class StudentFactory extends Factory
             'address' => Str::random(20),
             'phone_number' => Str::random(13),
             'last_education' => 'SMP',
-            'user_id' => rand(1, 100),
+            'user_id' => rand(4, 50),
             'verify_status' => false,
         ];
     }

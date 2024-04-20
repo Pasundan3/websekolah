@@ -19,7 +19,7 @@ class RegistrationFactory extends Factory
     {
         return [
             'registration_uid' => Str::random(10),
-            'student_id' => rand(1, 100),
+            'student_id' => rand(7, 21),
         ];
     }
 }

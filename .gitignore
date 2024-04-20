@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 github_token.txt
 PPDB.txt
+/public/uploads

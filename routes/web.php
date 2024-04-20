@@ -80,6 +80,17 @@ Route::middleware(['auth','checkRole:admin'])->group(function () {
     Route::post('admin/accept-administration', [\App\Http\Controllers\AdminController::class, 'accept_reject_application'])->name('admin.accept_reject_application');    
 });
 
+// admin web
+// role is not integrated yet
+Route::get('admin/posts/create-post', [\App\Http\Controllers\AdminWebController::class, 'create_post'])->name('admin.create_post');
+Route::post('admin/posts/create-new-post', [\App\Http\Controllers\AdminWebController::class, 'create_new_post'])->name('admin.create_new_post');
+Route::get('admin/posts/edit-post/{id}', [\App\Http\Controllers\AdminWebController::class, 'edit_post'])->name('admin.edit_post');
+Route::post('admin/posts/update-post/{id}', [\App\Http\Controllers\AdminWebController::class, 'update_post'])->name('admin.update_post');
+Route::delete('admin/posts/delete-post/{id}', [\App\Http\Controllers\AdminWebController::class, 'delete_post'])->name('admin.delete_post');
+Route::get('admin/posts', [\App\Http\Controllers\AdminWebController::class, 'index_posts'])->name('admin.index_posts');
+Route::get('admin/posts/{id}', [\App\Http\Controllers\AdminWebController::class, 'detail_post'])->name('admin.detail_post');
+Route::post('admin/posts/upload-image', [\App\Http\Controllers\AdminWebController::class, 'upload_image'])->name('admin.upload_image');
+
 // Fallback route for handling 404 errors for guests
 Route::fallback(function (Request $request) {
     // Check if the user is authenticated
