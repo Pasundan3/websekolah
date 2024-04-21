@@ -2,7 +2,7 @@
 <header class="header-area">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <!-- Navbar Brand --><a class="navbar-brand" href="/"><img src="{{asset('img/core-img/smp3-title-white-75.png')}}" alt=""></a>
+          <!-- Navbar Brand --><a class="navbar-brand" href="/"><img src="{{asset('img/core-img/sma3-title-white-normal-75.png')}}" alt=""></a>
           <!-- Navbar Toggler -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#saasboxNav" aria-controls="saasboxNav" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-grid"></i></button>
           <!-- Navbar Nav -->

@@ -1,6 +1,6 @@
 @extends('layouts.landing')
 @section('description', 'halaman 404')
-@section('keywords', 'smpn, smp bandung , bandung, smp negeri, smpn, smpn 3 pasundan, smp pasundan, pasunan, negeri pasundan')
+@section('keywords', 'sman, sma bandung , bandung, sma negeri, sman, sman 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
 @section('content')
 <!-- Error Area-->

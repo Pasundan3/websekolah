@@ -1,6 +1,6 @@
  @extends('layouts.landing')
- @section('description', 'SMPN 3 Pasundan adalah ....')
- @section('keywords', 'smpn, smp bandung , bandung, smp negeri, smpn, smpn 3 pasundan, smp pasundan, pasunan, negeri pasundan')
+ @section('description', 'SMA 3 Pasundan adalah ....')
+ @section('keywords', 'sman, sma bandung , bandung, sma negeri, sman, sman 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
  @section('content')
  <!-- Error Area-->
@@ -132,7 +132,7 @@
              <!-- Welcome Content -->
              <div class="col-12 col-sm-10 col-md-7">
                  <div class="section-heading">
-                     <h6>Kepala SMP 3 Pasundan</h6>
+                     <h6>Kepala SMA 3 Pasundan</h6>
                      <p>Pembelajran e-learning merupakan bagian dari tuntuan kemajuan teknologi dan komunikasi saat ini. It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
                  </div>
              </div>

@@ -1,6 +1,6 @@
 @extends('layouts.landing')
- @section('description', 'SMP 3 Pasundan adalah ....')
- @section('keywords', 'smpn, smp bandung , bandung, smp negeri, smpn, smpn 3 pasundan, smp pasundan, pasunan, negeri pasundan')
+ @section('description', 'SMA 3 Pasundan adalah ....')
+ @section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
  @section('content')
     <!-- Breadcrumb Area -->
@@ -9,7 +9,7 @@
         <div class="row h-100 align-items-center">
           <div class="col-12">
             <div class="breadcrumb-content">
-              <h2 class="breadcrumb-title">Bertia SMP 3 Pasundan</h2>
+              <h2 class="breadcrumb-title">Bertia SMA 3 Pasundan</h2>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>

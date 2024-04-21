@@ -13,6 +13,11 @@ use App\Http\Controllers\LandingPageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// LIST TODO: URGENT @ ALDY
+// 1. PISAHKAN LOGIN UNTUK USER/ STUDENT dan UNTUK ADMIN.
+
+
+
 // landing page
 // masukkin data statis
 Route::get('/', [LandingPageController::class, 'index'])->name('root');

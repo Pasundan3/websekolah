@@ -7,9 +7,9 @@
         <meta name="description" content="@yield('description')">
         <meta name="keywords" content="@yield('keywords')">
         
-        <title>{{ config('app.name', 'SMPN 3 Pasundan') }}</title>
+        <title>{{ config('app.name', 'SMA 3 Pasundan') }}</title>
         <!-- Favicon-->
-        <link rel="shortcut icon" href="img/core-img/logo_smp_3_pasundan_bandung.png" type="image/x-icon">
+        <link rel="shortcut icon" href="img/core-img/logo_sma_3_pasundan_bandung.png" type="image/x-icon">
         <!-- All CSS Stylesheet-->
         <link rel="stylesheet" href="{{ asset('assets/css/all-css-libraries.css') }}">
         <!-- Core Stylesheet-->

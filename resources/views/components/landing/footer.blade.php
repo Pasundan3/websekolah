@@ -6,7 +6,7 @@
             <!-- Footer Widget Area -->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="footer-widget-area"><a class="d-block mb-4" href="index.html"><img src="{{ asset('img/core-img/logo.png')}}" alt=""></a>
-                    <p>smp 3 pasundan adalah It's crafted with the latest trend of design &amp; coded with all modern approaches.</p>
+                    <p>SMA 3 pasundan adalah It's crafted with the latest trend of design &amp; coded with all modern approaches.</p>
                     <div class="footer-social-icon d-flex align-items-center mt-3"><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Facbook"><i class="bi bi-facebook"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter"><i class="bi bi-twitter"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Instagram"><i class="bi bi-instagram"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Linkedin"><i class="bi bi-linkedin"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Youtube"><i class="bi bi-youtube"></i></a></div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 <div class="footer-widget-area">
                     <h5 class="mb-4">Lokasi Kami</h5>
                     <p class="lh-base mb-3">Jl. Kebon Jati No.31 Kb.Jeruk <br> Kec.Andir, Kota Bandung, Jawa Barat.</p>
-                    <p class="mb-0">Call: +123 456 789 <br> Email: help@example.com</p>
+                    <p class="mb-0">Call: +62 813-2026-4411 & +62 813-2026-4422 <br> Email: smapasundan3bdg@yahoo.com</p>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
         <div class="copywrite-wrapper mt-5 rounded-3 d-lg-flex align-items-lg-center justify-content-lg-between">
             <!-- Copywrite Text -->
             <div class="copywrite-text text-center text-lg-start mb-3 mb-lg-0 me-lg-4">
-                <p class="mb-0">2021 &copy; All rights reserved by <a href="#" target="_blank">Designing World</a></p>
+                <p class="mb-0">2024 &copy; All rights reserved by <a href="#" target="_blank">Designing World</a></p>
             </div>
             <!-- Footer Nav -->
             <div class="footer-nav mb-3 mb-lg-0 me-lg-4">

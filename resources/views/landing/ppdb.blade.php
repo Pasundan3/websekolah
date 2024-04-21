@@ -1,6 +1,6 @@
 @extends('layouts.landing')
- @section('description', 'SMPN 3 Pasundan adalah ....')
- @section('keywords', 'smpn, smp bandung , bandung, smp negeri, smpn, smpn 3 pasundan, smp pasundan, pasunan, negeri pasundan')
+ @section('description', 'SMA 3 PASUNDAN adalah ....')
+ @section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
  @section('content')
  <!-- Error Area-->
@@ -27,13 +27,13 @@
              <div class="col-12 col-sm-10 col-md-6">
                  <div class="welcome-content">
                      <ul class="mb-0 ps-1 d-flex align-items-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="200ms">
-                         <li>Idea</li>
-                         <li>Development</li>
-                         <li>Branding</li>
+                         <li>Daftar</li>
+                         <li>Ikuti Seleksi</li>
+                         <li>Pengumuman</li>
                      </ul>
                      <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="300ms">Halaman  <br>PPDB.</h2>
-                     <p class="mb-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="400ms">It's crafted with the latest trend of design &amp; coded with all modern approaches.</p>
-                     <div class="hero-btn-group wow fadeInUp" data-wow-duration="1s" data-wow-delay="500ms"><a class="btn btn-warning mt-3 me-3" href="#">Buy Now</a><a class="btn btn-light mt-3" href="#">See More</a></div>
+                     <p class="mb-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="400ms">Info PPDB dapat dihubungi melalui :  +62 813-2026-4411 &amp; +62 813-2026-4422  </p>
+                     <div class="hero-btn-group wow fadeInUp" data-wow-duration="1s" data-wow-delay="500ms"><a class="btn btn-warning mt-3 me-3" href="#">Daftar Sekaran</a></div>
                  </div>
              </div>
              <!-- Welcome Thumb -->

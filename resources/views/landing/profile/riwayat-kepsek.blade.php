@@ -1,6 +1,6 @@
 @extends('layouts.landing')
-@section('description', 'SMPN 3 Pasundan adalah ....')
-@section('keywords', 'smpn, smp bandung , bandung, smp negeri, smpn, smpn 3 pasundan, smp pasundan, pasunan, negeri
+@section('description', 'SMA 3 PASUNDAN adalah ....')
+@section('keywords', 'sman, sma bandung , bandung, sma negeri, sman, sman 3 pasundan, sma pasundan, pasunan, negeri
 pasundan')
 
 @section('content')
@@ -10,7 +10,7 @@ pasundan')
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcrumb-content">
-                    <h2 class="breadcrumb-title">Riwayat Kepala Sekolah SMP 3 Pasundan</h2>
+                    <h2 class="breadcrumb-title">Riwayat Kepala Sekolah SMA 3 Pasundan</h2>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@ pasundan')
                         aria-orientation="vertical">
                         <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
-                            aria-selected="true">Juni 2020</button>
+                            aria-selected="true">Juni 2024</button>
                         <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
                             aria-selected="false">Juni 2015</button>
@@ -50,7 +50,7 @@ pasundan')
                                 <div class="card-body px-4 py-5 py-sm-4 py-md-5 ">
                                     <div class="member-img mb-4 rounded-circle"><img
                                             src="{{asset('img/bg-img/16.jpg')}}" alt=""></div>
-                                    <h6 class="text-center">Among Praja</h6>
+                                    <h6 class="text-center">Wisma Lesmana, Drs,. M.M.Pd,. M.Si,. PhD,. S.H,. M.M</h6>
                                     <p class="text-center fz-14">Kepsek angkatan 12</p>
                                     <div class="border"></div>
                                     <div class="container">
@@ -199,6 +199,7 @@ pasundan')
                             </div>
                         </div>
                     </div>
+
                     <div class="tab-pane fade " id="v-pills-messages" role="tabpanel"
                         aria-labelledby="v-pills-messages-tab">
                         <div class="col-12 col-sm-12">

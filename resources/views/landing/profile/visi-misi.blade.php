@@ -1,6 +1,6 @@
 @extends('layouts.landing')
-@section('description', 'SMPN 3 Pasundan adalah ....')
-@section('keywords', 'smpn, smp bandung , bandung, smp negeri, smpn, smpn 3 pasundan, smp pasundan, pasunan, negeri pasundan')
+@section('description', 'SMA 3 PASUNDAN adalah ....')
+@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
 @section('content')
 <!-- Breadcrumb Area -->
@@ -22,7 +22,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-9 col-lg-8">
                 <div class="section-heading text-center">
-                    <h2>Visi dan misi smp 3 simpenan Bandung.</h2>
+                    <h2>Visi dan Misi SMA 3 Pasundan Bandung.</h2>
                 </div>
             </div>
         </div>
@@ -43,17 +43,20 @@
                                 </div>
                                 <div class="col-12 col-sm-9 col-md-6">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Visi &amp; SMP 3 Simpenen</h6>
-                                        <h2 class="mb-3">We provide best design &amp; dev solution.</h2>
-                                        <p>It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
+                                        <h6>Visi SMA 3 PASUNDAN</h6>
+                                        <h6 class="mb-3 mt-2">
+                                            "Menghasilkan Lulusan SMA PASUNDAN 3 yang Berprestasi, Inovatif, Serasi, Agamis dan Berwawasan Lingkungan Hidup"
+                                        </h6>
                                         <ul class="list-unstyled">
-                                            <li><i class="alert-info bi bi-check"></i>Vanilla JavaScript</li>
-                                            <li><i class="alert-info bi bi-check"></i>Bootstrap 5</li>
-                                            <li><i class="alert-info bi bi-check"></i>Creative Design</li>
+                                            <li><i class="alert-info bi bi-check"></i>Berprestasi</li>
+                                            <li><i class="alert-info bi bi-check"></i>Inovatif</li>
+                                            <li><i class="alert-info bi bi-check"></i>Serasi</li>
+                                            <li><i class="alert-info bi bi-check"></i>Agamis</li>
+                                            <li><i class="alert-info bi bi-check"></i>Berwawasan Lingkungan Hidup</li>
                                         </ul>
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </div>
                         <!-- Tab Pane-->
@@ -64,14 +67,46 @@
                                 </div>
                                 <div class="col-12 col-sm-9 col-md-6">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Misi &amp; SMP 3 Simpenen</h6>
-                                        <h2 class="mb-3">We provide digital marketing solution.</h2>
-                                        <p>It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
-                                        <ul class="list-unstyled">
-                                            <li><i class="alert-info bi bi-check"></i>Vanilla JavaScript</li>
-                                            <li><i class="alert-info bi bi-check"></i>Bootstrap 5</li>
-                                            <li><i class="alert-info bi bi-check"></i>Creative Design</li>
-                                        </ul>
+                                        <h6>Misi SMA 3 PASUNDAN</h6>
+                                        <h6>
+                                            Untuk mencapai VISI tersebut, SMA Pasundan 3 Kota Bandung mengembangkan Permendikbud nomor 61 tahun 2014 dan berdasarkan visi Pendidikan YPDM Pasundan misi sebagai berikut:
+                                        </h6>
+                                        <ol class="h-6" style="color: #1f0757 !important;">
+                                            <li>
+                                                Meningkatkan keimanan, ketaqwaan Kepada Tuhan yang Maha Esa dan Akhlaq Mulia.
+                                            </li>
+                                            <li>
+                                                Menumbuhkan jiwa inovatif, aktif, dan peduli terhadap isu-isu yang berkembang
+                                                di lingkungan sekitarnya, khususnya dalam pemeliharaan dan pengelolaan
+                                                lingkungan hidup.
+                                            </li>
+
+                                            <li>
+                                                Meningkatkan profesionalisme tenaga pendidik dan tenaga kependidikan
+                                            </li>
+                                            <li>
+                                                Meningkatkan sarana prasarana penunjang pendidikan yang ramah lingkungan
+                                            </li>
+                                            <li>
+                                                Mewujudkan pembelajaran aktif, inovatif, kreatif, efektif, menyenangkan,
+                                                kompetitif dan unggul, Mendidik siswa berbudaya lokal untuk memperkuat budaya nasional serta
+                                                memiliki daya saing global
+                                            </li>
+                                            <li>
+                                                Menumbuhkan dan mengembangkan pola pikir dan tindakan yang mencerminkan
+                                                budaya mutu dan akhlaq mulia dalam kehidupan sehari-hari
+                                            </li>
+                                            <li>
+                                                Meningkatkan pembelajaran berbasis IT
+                                            </li>
+                                            <li>
+                                                Meningkatkan budaya belajar, bekerja, disiplin peduli dan berwawasan
+                                                lingkungan
+                                            </li>
+                                            <li>
+                                                Mengembangkan pengelolaan sekolah yang transparan, partisipatif dan akuntabel
+                                            </li>
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
@@ -84,14 +119,14 @@
                                 </div>
                                 <div class="col-12 col-sm-9 col-md-6">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Tujuan &amp; SMP 3 Simpenen</h6>
-                                        <h2 class="mb-3">We provide creative business solution.</h2>
-                                        <p>It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
-                                        <ul class="list-unstyled">
-                                            <li><i class="alert-info bi bi-check"></i>Vanilla JavaScript</li>
-                                            <li><i class="alert-info bi bi-check"></i>Bootstrap 5</li>
-                                            <li><i class="alert-info bi bi-check"></i>Creative Design</li>
-                                        </ul>
+                                        <h6>Tujuan SMA 3 PASUNDAN</h6>
+                                       
+                                        <p  style="color: #1f0757 !important;">
+                                            "Tujuan sekolah sebagai bagian dari tujuan pendidikan nasional adalah meningkatkan
+                                            kecerdasan, pengetahuan, kepribadian, akhlak mulia, serta keterampilan untuk hidup
+                                            mandiri dan mengikuti pendidikan lebih lanjut"
+                                        </p>
+                                   
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.landing')
-@section('description', 'SMPN 3 Pasundan adalah ....')
-@section('keywords', 'smpn, smp bandung , bandung, smp negeri, smpn, smpn 3 pasundan, smp pasundan, pasunan, negeri pasundan')
+@section('description', 'SMAN 3 Pasundan adalah ....')
+@section('keywords', 'sman, sma bandung , bandung, sma negeri, sman, sman 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
 @section('content')
 <!-- Breadcrumb Area -->
@@ -23,7 +23,7 @@
             <!-- Thumbnail -->
             <div class="col-12 col-lg-6">
                 <div class="register-thumbnail">
-                    <img src="{{asset('img/core-img/smpn-3-with-title.png')}}" class="img-fluid" alt="logo pasundan">
+                    <img src="{{asset('img/core-img/sma3-title-black-normal.webp')}}" class="img-fluid" alt="logo pasundan">
                 </div>
             </div>
             <div class="col-12 col-lg-6">
