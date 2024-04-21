@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\News;
 
 class LandingPageController extends Controller
 {
@@ -44,5 +45,19 @@ class LandingPageController extends Controller
     }
     public function blog_with_id($id){
         return view('landing.post.detail');
+    }
+
+    // news sub menu
+    public function news(){
+        $news = News::all();
+
+        return view('', compact('news'));
+    }
+
+    // teacher sub menu
+    public function teachers(){
+        $teachers = Teacher::all();
+
+        return view('', compact('teachers'));
     }
 }

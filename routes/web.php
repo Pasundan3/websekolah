@@ -91,6 +91,14 @@ Route::get('admin/posts', [\App\Http\Controllers\AdminWebController::class, 'ind
 Route::get('admin/posts/{id}', [\App\Http\Controllers\AdminWebController::class, 'detail_post'])->name('admin.detail_post');
 Route::post('admin/posts/upload-image', [\App\Http\Controllers\AdminWebController::class, 'upload_image'])->name('admin.upload_image');
 
+Route::get('admin/teachers/create-teacher', [\App\Http\Controllers\AdminWebController::class, 'create_teacher'])->name('admin.create_teacher');
+Route::post('admin/teachers/create-new-teacher', [\App\Http\Controllers\AdminWebController::class, 'create_new_teacher'])->name('admin.create_new_teacher');
+Route::get('admin/teachers/edit-teacher/{id}', [\App\Http\Controllers\AdminWebController::class, 'edit_teacher'])->name('admin.edit_teacher');
+Route::post('admin/teachers/update-teacher/{id}', [\App\Http\Controllers\AdminWebController::class, 'update_teacher'])->name('admin.update_teacher');
+Route::delete('admin/teachers/delete-teacher/{id}', [\App\Http\Controllers\AdminWebController::class, 'delete_teacher'])->name('admin.delete_teacher');
+Route::get('admin/teachers', [\App\Http\Controllers\AdminWebController::class, 'index_teachers'])->name('admin.index_teachers');
+Route::get('admin/teachers/{id}', [\App\Http\Controllers\AdminWebController::class, 'detail_teacher'])->name('admin.detail_teacher');
+
 // Fallback route for handling 404 errors for guests
 Route::fallback(function (Request $request) {
     // Check if the user is authenticated
