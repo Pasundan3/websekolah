@@ -117,13 +117,22 @@ class AdminController extends Controller
             $history = new PaymentHistory;
             $history->registration_id = $register_siswa->id;
             $history->amount = $request->amount;
-            // should add image_url
             $history->save();
+            // should add image_url
 
             // add to payment_registration
             $register_siswa->payment_registration->remaining_amount = ($register_siswa->amount - $request->amount);
             $register_siswa->payment_registration->save();
 
+            $viewData = [
+                'registration_id' => $registration_uid,
+                'amount' => $history->amount,
+                'date' => $history->created_at,
+            ];
+            $receipt_content = view('admin.payment_receipt', $viewData)->render();
+            $history->receipt = $receipt_content;
+            $history->save();
+            
             return redirect()->back()->with('success', 'berhasil melakukan pembayaran');
 
         }catch(\Exception $e){
@@ -156,5 +165,10 @@ class AdminController extends Controller
 
     public function index(){
         return view('admin.content');
+    }
+
+    public function pembayaran($registration_uid){
+        $data = Registration::where('registration_uid', $registration_uid)->with(['student', 'student.families'])->first();
+        return view('admin.input-pembayaran', ['data' => $data]);
     }
 }
