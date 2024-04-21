@@ -30,7 +30,13 @@ class UserFactory extends Factory
         //     'email' => 'aldysp34@gmail.com',
         //     'password' => Hash::make('aldysp34'),
         //     'remember_token' => Str::random(10),
-        //     'role' => 'siswa'
+        //     'role' => 'admin'
+        // ];
+        // return [
+        //     'email' => 'aldysp32@gmail.com',
+        //     'password' => Hash::make('aldysp34'),
+        //     'remember_token' => Str::random(10),
+        //     'role' => 'adminweb'
         // ];
     }
 
