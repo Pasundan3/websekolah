@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('registration_id');
             $table->string('amount');
             $table->text('image_url'); //bukti pembayaran
+            $table->text('receipt');
             $table->timestamps();
 
             $table->foreign('registration_id')->references('id')->on('registrations')->onDelete('cascade');
