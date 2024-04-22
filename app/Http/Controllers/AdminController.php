@@ -171,4 +171,120 @@ class AdminController extends Controller
         $data = Registration::where('registration_uid', $registration_uid)->with(['student', 'student.families'])->first();
         return view('admin.input-pembayaran', ['data' => $data]);
     }
+
+    public function create_student(Request $request){
+        try{
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => [
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    Rule::unique(User::class),
+                ],
+                'password' => $this->passwordRules(),
+            ]);
+            
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => 'siswa',
+                'password' => Hash::make($request->password),
+            ]);
+
+            $this->validate($request, [
+                'name' => 'required',
+                'nisn' => 'required|numeric',
+                'nik' => 'required|numeric|digits:16',
+                'date_of_birth' => 'required',
+                'gender' => 'required',
+                'religion' => 'required',
+                'address' => 'required',
+                'last_education' => 'required',
+                'phone_number' => 'required',
+            ]);
+            $date_of_birth_student = Carbon::parse($request->date_of_birth);
+            $student = Student::create([
+                'name' => $request->name,
+                'nisn' => $request->nisn,
+                'nik' => $request->nik,
+                'date_of_birth' => $date_of_birth_student->format('M d Y'),
+                'gender' => $request->gender,
+                'religion' => $request->religion,
+                'address' => $request->address,
+                'last_education' => $request->last_education,
+                'phone_number' => $request->phone_number,
+                'user_id' => $user->id,
+                'verify_status' => false
+            ]);
+
+            if ($request->name_ibu){
+                $date_of_birth_ibu = Carbon::parse($request->date_of_birth_ibu);
+                $mother = Family::create([
+                    'name' => $request->name_ibu,
+                    'nik' => $request->nik_ibu,
+                    'date_of_birth' => $date_of_birth_ibu,
+                    'gender' => 'perempuan',
+                    'religion' => $request->religion_ibu,
+                    'address' => $request->address_ibu,
+                    'last_education' => $request->last_education_ibu,
+                    'phone_number' => $request->phone_number_ibu,
+                    'working_as' => $request->working_as_ibu,
+                    'income' => $request->income_ibu,
+                    'parent_status' => 'ibu',
+                    'student_id' => $student->id
+                ]);
+            }
+            if ($request->name_ayah){
+                $date_of_birth_ayah = Carbon::parse($request->date_of_birth_ayah);
+                $father = Family::create([
+                    'name' => $request->name_ayah,
+                    'nik' => $request->nik_ayah,
+                    'date_of_birth' => $date_of_birth_ayah,
+                    'gender' => $request->gender_ayah,
+                    'religion' => $request->religion_ayah,
+                    'address' => $request->address_ayah,
+                    'last_education' => $request->last_education_ayah,
+                    'phone_number' => $request->phone_number_ayah,
+                    'working_as' => $request->working_as_ayah,
+                    'income' => $request->income_ayah,
+                    'parent_status' => 'ayah',
+                    'student_id' => $student->id
+                ]);
+            }
+            if ($request->name_wali){
+                $date_of_birth_wali = Carbon::parse($request->date_of_birth_wali);
+                $wali = Family::create([
+                    'name' => $request->name_wali,
+                    'nik' => $request->nik_wali,
+                    'date_of_birth' => $date_of_birth_wali,
+                    'gender' => $request->gender_wali,
+                    'religion' => $request->religion_wali,
+                    'address' => $request->address_wali,
+                    'last_education' => $request->last_education_wali,
+                    'phone_number' => $request->phone_number_wali,
+                    'working_as' => $request->working_as_wali,
+                    'income' => $request->income_wali,
+                    'parent_status' => 'wali',
+                    'student_id' => $student->id
+                ]);
+            }
+            
+
+            $uniqueId = Str::random(10);
+            $registration = Registration::create([
+                'registration_uid' => $uniqueId,
+                'student_id' => $student->id,
+                'status' => 'daftar'
+            ]);
+            return redirect()->back()->with('success', 'berhasil melakukan registrasi siswa');
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error_message' => $e->getMessage()]);
+        }
+    }
+
+    public function register_student(){
+        return view('admin.register-student');
+    }
 }

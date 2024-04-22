@@ -122,9 +122,6 @@ class StudentController extends Controller
                 'student_id' => $student->id,
                 'status' => 'daftar'
             ]);
-
-
-
             return redirect()->route('student.show', ['registration_uid' => $uniqueId]);
             
         }catch(\Exception $e){
