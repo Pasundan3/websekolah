@@ -13,6 +13,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
+
+    public function login_admin(){
+        return view('admin.login');
+    }
     public function verifikasi_berkas(Request $request, $registration_uid, $status)
     {
         $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();

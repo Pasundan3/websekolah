@@ -73,7 +73,7 @@ Route::middleware(['auth','checkRole:siswa'])->group(function () {
     Route::get('/student/cek-sisa-pembayaran', [\App\Http\Controllers::class, 'check_remaining_amount'])->name('student.check-remaining-amount');  
 });
 
-
+Route::get('admin-login',[\App\Http\Controllers\AdminController::class, 'login_admin'])->name('admin.login');
 // Admin
 Route::middleware(['auth','checkRole:admin'])->group(function () {
     Route::get('admin/export-students', [\App\Http\Controllers\AdminController::class, 'export_students'])->name('admin.export_students');  
