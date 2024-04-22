@@ -1,8 +1,8 @@
 @extends('admin.app')
 
 @section('content')
-
-<table>
+<h2> List Siswa Diterima</h2>
+<table class="table table-responsive w-100">
     <thead>
         <tr>
             <th>ID</th>

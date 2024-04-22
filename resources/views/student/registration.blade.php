@@ -7,159 +7,262 @@
     </div>
     <div class="card-body">
         <p> Silahkan isi form dibawah ini dengan cermat.</p>
+        <div class="mb-4">
+            Keterangan : <br />
+            <span class="text-danger mb-4">*</span> Wajib Diisi.
+        </div>
+
         @include('flash')
-        <form action="{{route('student.store')}}" method="post">
+
+        <form action="{{ route('student.store') }}" method="post" class="needs-validation" novalidate>
             @csrf
-            <label for="name">nama siswa</label>
-            <input type="text" name="name" id="name">
-            <br>
-            <label for="nisn">NISN</label>
-            <input type="text" name="nisn" id="nisn">
-            <br>
-            <label for="nik">nik</label>
-            <input type="text" name="nik" id="nik">
-            <br>
-            <label for="date_of_birth">Tanggal Lahir</label>
-            <input type="date" name="date_of_birth" id="date_of_birth">
-            <br>
-            <p>Jenis kelamin</p>
-            <label for="laki-laki">Laki-laku</label>
-            <input type="radio" name="gender" id="gender" value="laki-laki">
-            <label for="perempuan">Perempuan</label>
-            <input type="radio" name="gender" id="perempuan" value="perempuan">
-            <br>
-            <p>Agama</p>
-            <label for="islam">islam</label>
-            <input type="radio" name="religion" id="islamr" value="islam">
-            <label for="kristen">kristen</label>
-            <input type="radio" name="religion" id="kristen" value="kristen">
-            <label for="budha">budha</label>
-            <input type="radio" name="religion" id="budha" value="budha">
-            <label for="hindu">Perempuan</label>
-            <input type="radio" name="religion" id="hindu" value="hindu">
-            <br>
-            <label for="address">alamat</label>
-            <input type="text" name="address" id="address">
-            <br>
-            <label for="last_education">SMP Terakhir</label>
-            <input type="text" name="last_education" id="last_education">
-            <br>
-            <label for="phone_number">No.Hp</label>
-            <input type="text" name="phone_number" id="phone_number">
 
-            <br>
-            <br>
-            <!-- Section orang tua -->
-            <!-- ibu -->
-            <label for="nama_ibu">Nama Ibu</label>
-            <input type="text" name="nama_ibu" id="nama_ibu">
-            <br>
-            <label for="nik_ibu">nik_ibu</label>
-            <input type="text" name="nik_ibu" id="nik_ibu">
-            <br>
-            <label for="date_of_birth_ibu">Tanggal Lahir ibu</label>
-            <input type="date" name="date_of_birth_ibu" id="date_of_birth_ibu">
-            <br>
-            <p>Agama ibu</p>
-            <label for="islam">islam</label>
-            <input type="radio" name="religion_ibu" id="islamr" value="islam">
-            <label for="kristen">kristen</label>
-            <input type="radio" name="religion_ibu" id="kristen" value="kristen">
-            <label for="budha">budha</label>
-            <input type="radio" name="religion_ibu" id="budha" value="budha">
-            <label for="hindu">Perempuan</label>
-            <input type="radio" name="religion_ibu" id="hindu" value="hindu">
-            <br>
-            <label for="address_ibu">alamat ibu</label>
-            <input type="text" name="address_ibu" id="address_ibu">
-            <br>
-            <label for="last_education_ibu">pendidikan terakhir ibu</label>
-            <input type="text" name="last_education_ibu" id="last_education_ibu">
-            <br>
-            <label for="phone_number_ibu">No.Hp ibu</label>
-            <input type="text" name="phone_number_ibu" id="phone_number_ibu">
-            <br>
-            <label for="working_as_ibu">Pekerjaan ibu</label>
-            <input type="text" name="working_as_ibu" id="working_as_ibu">
-            <br>
-            <label for="income_ibu">Penghasilan Ibu</label>
-            <input type="text" name="income_ibu" id="income_ibu">
+            <!-- Student Information -->
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="name">Nama Siswa <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div class="invalid-feedback">Mohon isi nama siswa.</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="nisn">NISN <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="nisn" name="nisn" required>
+                    <div class="invalid-feedback">Mohon isi NISN.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="nik">NIK</label>
+                    <input type="text" class="form-control" id="nik" name="nik" required>
+                    <div class="invalid-feedback">Mohon isi NIK.</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="date_of_birth">Tanggal Lahir</label>
+                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                    <div class="invalid-feedback">Mohon isi tanggal lahir.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="gender">Jenis Kelamin</label>
+                    <div>
+                        <input type="radio" id="male" name="gender" value="Laki-laki" required>
+                        <label for="male">Laki-laki</label>
+                        <input type="radio" id="female" name="gender" value="Perempuan" required>
+                        <label for="female">Perempuan</label>
+                    </div>
+                    <div class="invalid-feedback">Mohon pilih jenis kelamin.</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="religion">Agama</label>
+                    <div>
+                        <input type="radio" id="islam" name="religion" value="Islam" required>
+                        <label for="islam">Islam</label>
+                        <input type="radio" id="christian" name="religion" value="Kristen" required>
+                        <label for="christian">Kristen</label>
+                        <input type="radio" id="buddha" name="religion" value="Buddha" required>
+                        <label for="buddha">Buddha</label>
+                        <input type="radio" id="hindu" name="religion" value="Hindu" required>
+                        <label for="hindu">Hindu</label>
+                    </div>
+                    <div class="invalid-feedback">Mohon pilih agama.</div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="address">Alamat</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                        <div class="invalid-feedback">Mohon isi alamat.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="last_education">SMP Terakhir</label>
+                        <input type="text" class="form-control" id="last_education" name="last_education" required>
+                        <div class="invalid-feedback">Mohon isi informasi pendidikan terakhir.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
 
-            <br><br>
-            <!-- Section orang tua -->
-            <!-- ayah -->
-            <label for="nama_ayah">Nama ayah</label>
-            <input type="text" name="nama_ayah" id="nama_ayah">
-            <br>
-            <label for="nik_ayah">nik_ayah</label>
-            <input type="text" name="nik_ayah" id="nik_ayah">
-            <br>
-            <label for="date_of_birth_ayah">Tanggal Lahir ayah</label>
-            <input type="date" name="date_of_birth_ayah" id="date_of_birth_ayah">
-            <br>
-            <p>Agama ayah</p>
-            <label for="islam">islam</label>
-            <input type="radio" name="religion_ayah" id="islamr" value="islam">
-            <label for="kristen">kristen</label>
-            <input type="radio" name="religion_ayah" id="kristen" value="kristen">
-            <label for="budha">budha</label>
-            <input type="radio" name="religion_ayah" id="budha" value="budha">
-            <label for="hindu">Perempuan</label>
-            <input type="radio" name="religion_ayah" id="hindu" value="hindu">
-            <br>
-            <label for="address_ayah">alamat ayah</label>
-            <input type="text" name="address_ayah" id="address_ayah">
-            <br>
-            <label for="last_education_ayah">pendidikan terakhir ayah</label>
-            <input type="text" name="last_education_ayah" id="last_education_ayah">
-            <br>
-            <label for="phone_number_ayah">No.Hp ayah</label>
-            <input type="text" name="phone_number_ayah" id="phone_number_ayah">
-            <br>
-            <label for="working_as_ayah">Pekerjaan ayah</label>
-            <input type="text" name="working_as_ayah" id="working_as_ayah">
-            <br>
-            <label for="income_ayah">Penghasilan ayah</label>
-            <input type="text" name="income_ayah" id="income_ayah">
+                    <div class="form-group">
+                        <label for="phone_number">Nomor HP</label>
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+                        <div class="invalid-feedback">Mohon isi nomor HP.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Parent Information -->
+            <h3>Informasi Orang Tua</h3>
 
-            <!-- Section orang tua -->
-            <!-- wali -->
-            <label for="nama_wali">Nama wali</label>
-            <input type="text" name="nama_wali" id="nama_wali">
-            <br>
-            <label for="nik_wali">nik_wali</label>
-            <input type="text" name="nik_wali" id="nik_wali">
-            <br>
-            <label for="date_of_birth_wali">Tanggal Lahir wali</label>
-            <input type="date" name="date_of_birth_wali" id="date_of_birth_wali">
-            <br>
-            <p>Agama wali</p>
-            <label for="islam">islam</label>
-            <input type="radio" name="religion_wali" id="islamr" value="islam">
-            <label for="kristen">kristen</label>
-            <input type="radio" name="religion_wali" id="kristen" value="kristen">
-            <label for="budha">budha</label>
-            <input type="radio" name="religion_wali" id="budha" value="budha">
-            <label for="hindu">Perempuan</label>
-            <input type="radio" name="religion_wali" id="hindu" value="hindu">
-            <br>
-            <label for="address_wali">alamat wali</label>
-            <input type="text" name="address_wali" id="address_wali">
-            <br>
-            <label for="last_education_wali">pendidikan terakhir wali</label>
-            <input type="text" name="last_education_wali" id="last_education_wali">
-            <br>
-            <label for="phone_number_wali">No.Hp wali</label>
-            <input type="text" name="phone_number_wali" id="phone_number_wali">
-            <br>
-            <label for="working_as_wali">Pekerjaan wali</label>
-            <input type="text" name="working_as_wali" id="working_as_wali">
-            <br>
-            <label for="income_wali">Penghasilan wali</label>
-            <input type="text" name="income_wali" id="income_wali">
+            <!-- Mother's Information -->
+            <h4>Informasi Ibu</h4>
+            <div class="form-group">
+                <label for="nama_ibu">Nama Ibu</label>
+                <input type="text" class="form-control" id="nama_ibu" name="nama_ibu">
+            </div>
+            <div class="form-group">
+                <label for="nik_ibu">NIK Ibu</label>
+                <input type="text" class="form-control" id="nik_ibu" name="nik_ibu">
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth_ibu">Tanggal Lahir Ibu</label>
+                <input type="date" class="form-control" id="date_of_birth_ibu" name="date_of_birth_ibu">
+            </div>
+            <div class="form-group">
+                <label>Agama Ibu</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ibu" id="islam_ibu" value="islam">
+                        <label class="form-check-label" for="islam_ibu">Islam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ibu" id="kristen_ibu" value="kristen">
+                        <label class="form-check-label" for="kristen_ibu">Kristen</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ibu" id="budha_ibu" value="budha">
+                        <label class="form-check-label" for="budha_ibu">Budha</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ibu" id="hindu_ibu" value="hindu">
+                        <label class="form-check-label" for="hindu_ibu">Hindu</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address_ibu">Alamat Ibu</label>
+                <input type="text" class="form-control" id="address_ibu" name="address_ibu">
+            </div>
+            <div class="form-group">
+                <label for="last_education_ibu">pendidikan terakhir ibu</label>
+                <input type="text" class="form-control" id="last_education_ibu" name="last_education_ibu">
+            </div>
+            <div class="form-group">
+                <label for="phone_number_ibu">No.Hp ibu</label>
+                <input type="text" class="form-control" id="phone_number_ibu" name="phone_number_ibu">
+            </div>
+            <div class="form-group">
+                <label for="working_as_ibu">Pekerjaan ibu</label>
+                <input type="text" class="form-control" id="working_as_ibu" name="working_as_ibu">
+            </div>
+            <div class="form-group">
+                <label for="income_ibu">Penghasilan Ibu</label>
+                <input type="text" class="form-control" id="income_ibu" name="income_ibu">
+            </div>
+            
+            <!-- Father's Information -->
+            <h4>Informasi Ayah</h4>
+            <div class="form-group">
+                <label for="nama_ayah">Nama Ayah</label>
+                <input type="text" class="form-control" id="nama_ayah" name="nama_ayah">
+            </div>
+            <div class="form-group">
+                <label for="nik_ayah">NIK Ayah</label>
+                <input type="text" class="form-control" id="nik_ayah" name="nik_ayah">
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth_ayah">Tanggal Lahir Ayah</label>
+                <input type="date" class="form-control" id="date_of_birth_ayah" name="date_of_birth_ayah">
+            </div>
+            <div class="form-group">
+                <label>Agama Ayah</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ayah" id="islam_ayah" value="islam">
+                        <label class="form-check-label" for="islam_ayah">Islam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ayah" id="kristen_ayah" value="kristen">
+                        <label class="form-check-label" for="kristen_ayah">Kristen</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ayah" id="budha_ayah" value="budha">
+                        <label class="form-check-label" for="budha_ayah">Budha</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_ayah" id="hindu_ayah" value="hindu">
+                        <label class="form-check-label" for="hindu_ayah">Hindu</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address_ayah">Alamat Ayah</label>
+                <input type="text" class="form-control" id="address_ayah" name="address_ayah">
+            </div>
+            <div class="form-group">
+                <label for="last_education_ayah">pendidikan terakhir Ayah</label>
+                <input type="text" class="form-control" id="last_education_ayah" name="last_education_ayah">
+            </div>
+            <div class="form-group">
+                <label for="phone_number_ayah">No.Hp Ayah</label>
+                <input type="text" class="form-control" id="phone_number_ayah" name="phone_number_ayah">
+            </div>
+            <div class="form-group">
+                <label for="working_as_ayah">Pekerjaan Ayah</label>
+                <input type="text" class="form-control" id="working_as_ayah" name="working_as_ayah">
+            </div>
+            <div class="form-group">
+                <label for="income_ayah">Penghasilan Ayah</label>
+                <input type="text" class="form-control" id="income_ayah" name="income_ayah">
+            </div>
 
+             <!-- Wali's Information -->
+             <h4>Informasi Wali</h4>
+            <div class="form-group">
+                <label for="nama_wali">Nama Wali</label>
+                <input type="text" class="form-control" id="nama_wali" name="nama_wali">
+            </div>
+            <div class="form-group">
+                <label for="nik_wali">NIK Wali</label>
+                <input type="text" class="form-control" id="nik_wali" name="nik_wali">
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth_wali">Tanggal Lahir Wali</label>
+                <input type="date" class="form-control" id="date_of_birth_wali" name="date_of_birth_wali">
+            </div>
+            <div class="form-group">
+                <label>Agama Wali</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_wali" id="islam_wali" value="islam">
+                        <label class="form-check-label" for="islam_wali">Islam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_wali" id="kristen_wali" value="kristen">
+                        <label class="form-check-label" for="kristen_wali">Kristen</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_wali" id="budha_wali" value="budha">
+                        <label class="form-check-label" for="budha_wali">Budha</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="religion_wali" id="hindu_wali" value="hindu">
+                        <label class="form-check-label" for="hindu_wali">Hindu</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address_wali">Alamat Wali</label>
+                <input type="text" class="form-control" id="address_wali" name="address_wali">
+            </div>
+            <div class="form-group">
+                <label for="last_education_wali">pendidikan terakhir Wali</label>
+                <input type="text" class="form-control" id="last_education_wali" name="last_education_wali">
+            </div>
+            <div class="form-group">
+                <label for="phone_number_wali">No.Hp Wali</label>
+                <input type="text" class="form-control" id="phone_number_wali" name="phone_number_wali">
+            </div>
+            <div class="form-group">
+                <label for="working_as_wali">Pekerjaan Wali</label>
+                <input type="text" class="form-control" id="working_as_wali" name="working_as_wali">
+            </div>
+            <div class="form-group">
+                <label for="income_wali">Penghasilan Wali</label>
+                <input type="text" class="form-control" id="income_wali" name="income_wali">
+            </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </form>
     </div>
 </div>

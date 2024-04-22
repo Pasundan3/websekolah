@@ -1,17 +1,18 @@
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create new news for admin web</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7 offset-3 mt-4">
-                <div class="card-body">
-                    <form method="post" action="{{route('admin.create_new_teacher')}}" enctype="multipart/form-data">
-                        @csrf
+@extends('admin.app')
+
+@section('content')
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h2>Buat Berita Baru</h2>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 offset-3 mt-4">
+                    <div class="card-body">
+                         @include('flash')
+                        <form method="post" action="{{route('admin.create_new_teacher')}}" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-group">
                                 <label for="">Name</label>
                                 <input type="text" name="name" class="form-control">
@@ -33,14 +34,15 @@
                             </div>
                             <div class="mb-3">
                                 <label for="formFileLg" class="form-label">Photo</label>
-                                <input name="file" class="form-control form-control-lg" id="formFileLg"
-                                        type="file">
+                                <input name="file" class="form-control " id="formFileLg" type="file">
                             </div>
                             <button class="btn btn-primary btn-sm">Save</button>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-</body>
-</html>
+</div>
+@endsection
