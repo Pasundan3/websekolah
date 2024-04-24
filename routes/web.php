@@ -86,6 +86,8 @@ Route::middleware(['auth','checkRole:admin'])->group(function () {
     Route::get('admin/pembayaran/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'pembayaran'])->name('admin.pembayaran');
     Route::post('admin/pembayaran/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'input_pembayaran'])->name('admin.input_pembayaran');
     Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin_verifikasi_berkas');
+    Route::get('admin/register-student', [\App\Http\Controllers\AdminController::class, 'register_student'])->name('admin.register_student');
+    Route::post('admin/register-student', [\App\Http\Controllers\AdminController::class, 'create_student'])->name('admin.create_student');
 });
 
 // admin web

@@ -10,6 +10,7 @@ use App\Exports\ExportStudents;
 use App\Models\PaymentRegistration;
 use App\Models\PaymentHistory;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -187,7 +188,7 @@ class AdminController extends Controller
                     'max:255',
                     Rule::unique(User::class),
                 ],
-                'password' => $this->passwordRules(),
+                'password' => ['required', 'min:8']
             ]);
             
             $user = User::create([
@@ -198,7 +199,6 @@ class AdminController extends Controller
             ]);
 
             $this->validate($request, [
-                'name' => 'required',
                 'nisn' => 'required|numeric',
                 'nik' => 'required|numeric|digits:16',
                 'date_of_birth' => 'required',
