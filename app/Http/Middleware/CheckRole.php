@@ -18,6 +18,7 @@ class CheckRole
         if (in_array(auth()->user()->role, $roles)){
             return $next($request);
         }
-        return $next($request);
+        // return $next($request);
+        return response()->view('404');
     }
 }
