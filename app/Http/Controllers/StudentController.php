@@ -18,7 +18,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('student.index');
+        $data = Student::where('user_id', auth()->user()->id)->with('registration')->first();
+        return view('student.index', ['data' => $data]);
     }
 
     /**
@@ -239,6 +240,19 @@ class StudentController extends Controller
             }
         }catch(\Exception $e){
             return redirect()->back()->withErrors(['error', $e->getMessage()]);
+        }
+    }
+
+    public function pay_amount(Request $request){
+        try{
+            $this->validate($request, [
+                'registration_uid' => 'required'
+            ]);
+            $registration_uid = $request->registration_uid;
+            $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
+            return view('student.payment', ['data' => $data]);
+        }catch(\Exception $e){
+            return view('student.payment')->withErrors(['error', $e->getMessage()]);
         }
     }
 
