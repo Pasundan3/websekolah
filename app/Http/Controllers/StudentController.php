@@ -59,7 +59,7 @@ class StudentController extends Controller
                 'phone_number' => $request->phone_number,
                 // user id must be logging in, jadi nanti ganti jadi user_id login
                 // 'user_id' => auth()->id(),
-                'user_id' => 1,
+                'user_id' => auth()->id(),
                 'verify_status' => false
             ]);
 
