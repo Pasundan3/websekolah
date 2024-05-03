@@ -33,7 +33,7 @@
                      </ul>
                      <h2 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="300ms">Halaman  <br>PPDB.</h2>
                      <p class="mb-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="400ms">Info PPDB dapat dihubungi melalui :  +62 813-2026-4411 &amp; +62 813-2026-4422  </p>
-                     <div class="hero-btn-group wow fadeInUp" data-wow-duration="1s" data-wow-delay="500ms"><a class="btn btn-warning mt-3 me-3" href="#">Daftar Sekaran</a></div>
+                     <div class="hero-btn-group wow fadeInUp" data-wow-duration="1s" data-wow-delay="500ms"><a class="btn btn-warning mt-3 me-3" href="{{route('register')}}">Daftar Sekarang</a></div>
                  </div>
              </div>
              <!-- Welcome Thumb -->

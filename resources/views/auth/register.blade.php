@@ -29,7 +29,7 @@
                 <div class="card register-card bg-gray p-2 p-sm-4">
                     <div class="card-body">
                         <h4>Tahap awal pendaftaran siswa baru.</h4>
-                        <p>Apakah sudah memiliki akun ?<a class="ms-2" href="login.html">Masuk</a></p>
+                        <p>Apakah sudah memiliki akun ?<a class="ms-2" href="{{route('login')}}">Masuk</a></p>
                         <!-- Register Form-->
                         <div class="register-form my-5">
                             <x-validation-errors class="mb-4" />

@@ -29,8 +29,8 @@
             <div class="col-12 col-lg-6">
                 <div class="card register-card bg-gray p-2 p-sm-4">
                     <div class="card-body">
-                        <h4>Welcome Back!</h4>
-                        <p>Didn't have an account?<a class="ms-2" href="{{url('/register')}}">Daftar Sekarang</a></p>
+                        <h4>Selamat Datang</h4>
+                        <p>Belum punya akun?<a class="ms-2" href="{{url('/register')}}">Daftar Sekarang</a></p>
                         <!-- Register Form -->
                         <div class="register-form my-4 my-lg-5">
                             <x-validation-errors class="mb-4" />
