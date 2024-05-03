@@ -3,13 +3,13 @@
 @section('content')
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Data Unverify Student</h1>
-<a  href = "#" class="btn btn-primary mb-3">Create New Registration</a>
+<a  href = "{{url('admin/register-student')}}" class="btn btn-primary mb-3">Create New Registration</a>
 <a href = "{{url('admin/export-students')}}" class="btn btn-secondary mb-3">Export Data Student</a>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">All Data Registered {year}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">All Data Registered</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">

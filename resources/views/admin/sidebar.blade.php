@@ -72,7 +72,7 @@
 
           @else
           <li class="nav-item">
-            <a href="admin/unverified-students" class="nav-link active">
+            <a href="{{route('admin.unverified_user_data')}}" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard (admin)
@@ -80,24 +80,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Registration (for admin)
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('admin.register_student')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Register</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Registered</p>
                 </a>
               </li>
             </ul>
@@ -107,7 +94,6 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Data Teacher
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
@@ -116,7 +102,6 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 News
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
