@@ -82,14 +82,16 @@ Route::middleware(['auth','checkRole:admin'])->group(function () {
     Route::get('admin/unverified-students',[\App\Http\Controllers\AdminController::class, 'unverified_student_data'])->name('admin.unverified_user_data'); 
     Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin.verifikasi_berkas');
     Route::get('admin/verify-student/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'detail_student'])->name('admin.student_detail');
-    Route::get('admin/input-biaya-pendidikan', [\App\Http\Controllers\AdminController::class, 'create_biaya_pendidikan'])->name('admin.create_biaya_pendidikan');
-    Route::post('admin/input-biaya-pendidikan', [\App\Http\Controllers\AdminController::class, 'input_biaya_pendidikan'])->name('admin.input_biaya_pendidikan');
-    Route::post('admin/accept-administration', [\App\Http\Controllers\AdminController::class, 'accept_reject_application'])->name('admin.accept_reject_application');
+    Route::get('admin/input-biaya-pendidikan/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'create_biaya_pendidikan'])->name('admin.create_biaya_pendidikan');
+    Route::post('admin/input-biaya-pendidikan/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'input_biaya_pendidikan'])->name('admin.input_biaya_pendidikan');
+    Route::post('admin/accept-administration/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'accept_reject_application'])->name('admin.accept_reject_application');
     Route::get('admin/pembayaran/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'pembayaran'])->name('admin.pembayaran');
     Route::post('admin/pembayaran/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'input_pembayaran'])->name('admin.input_pembayaran');
     Route::post('admin/verify-student/{registration_uid}/{status}', [\App\Http\Controllers\AdminController::class, 'verifikasi_berkas'])->name('admin_verifikasi_berkas');
     Route::get('admin/register-student', [\App\Http\Controllers\AdminController::class, 'register_student'])->name('admin.register_student');
     Route::post('admin/register-student', [\App\Http\Controllers\AdminController::class, 'create_student'])->name('admin.create_student');
+    Route::get('admin/verified-student', [\App\Http\Controllers\AdminController::class, 'list_verified_students'])->name('admin.verified_students');
+    // Route::get('admin/list-verified-student', [\App\Http\Controllers\AdminController::class, 'verified_students'])->name('admin.list_verified_students');
 });
 
 // admin web

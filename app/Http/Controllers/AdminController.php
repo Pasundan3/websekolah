@@ -11,9 +11,50 @@ use App\Models\PaymentRegistration;
 use App\Models\PaymentHistory;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Validation\Rule;
+use App\Models\User;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+
+    public function list_verified_students(Request $request){
+        if ($request->ajax()){
+            $data = Student::with('families', 'registration') // Load families and registration
+    ->where('verify_status', true)
+    ->whereExists(function ($query) {
+        $query->select('id')
+            ->from('registrations')
+            ->whereColumn('registrations.student_id', 'students.id');
+    })
+    ->get();
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $registrationUid = $row->registration ? $row->registration->registration_uid : null;
+
+                        $btn = '<a href="' . route('admin.student_detail', ['registration_uid' => $registrationUid]) . '" class="btn btn-primary">View Details</a><br>
+                                <form action="'.route('admin.accept_reject_application', ['registration_uid' => $registrationUid, 'status' => 'accept']) . '" method="post">
+                                '. csrf_field() . '
+                                <button type="submit" class="btn btn-secondary">Accept Registration</button>
+                                </form>
+                                <form action="'.route('admin.accept_reject_application', ['registration_uid' => $registrationUid, 'status' => 'reject']) . '" method="post">
+                                ' . csrf_field(). '
+                                <button type="submit" class="btn btn-danger">Reject Registration</button>
+                                </form>';
+
+      
+                         return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        
+        return view('admin.verified-student');
+    }
 
     public function login_admin(){
         return view('admin.login');
@@ -100,7 +141,7 @@ class AdminController extends Controller
             $data->save();
 
             $payment_registration = new PaymentRegistration;
-            $payment_registration->registration_uid = $registration_uid;
+            $payment_registration->registration_uid = $data->id;
             $payment_registration->amount = $data->amount;
             $payment_registration->remaining_amount = $data->amount;
 
@@ -164,8 +205,16 @@ class AdminController extends Controller
     }
 
     public function detail_student($registration_uid){
-        $data = Registration::where('registration_uid', $registration_uid)->with('student')->with('student.families')->first();
-        return view('admin.detail-student', ['data' => $data]);
+        // $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
+        $registration = Registration::where('registration_uid', $registration_uid)->first();
+        $student = $registration->student;
+        if ($student){
+            $families = $student->families;
+        }
+
+        dd($student);
+
+        return view('admin.detail-student', ['data' => $registration, 'student' => $student, 'families' => $families]);
     }
 
     public function index(){
@@ -178,6 +227,7 @@ class AdminController extends Controller
     }
 
     public function create_student(Request $request){
+        DB::beginTransaction();
         try{
             $this->validate($request, [
                 'name' => ['required', 'string', 'max:255'],
@@ -190,13 +240,16 @@ class AdminController extends Controller
                 ],
                 'password' => ['required', 'min:8']
             ]);
-            
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'role' => 'siswa',
-                'password' => Hash::make($request->password),
-            ]);
+            try{
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'role' => 'siswa',
+                    'password' => Hash::make($request->password),
+                ]);
+            }catch(\Exception $ex){
+                throw $ex;
+            }
 
             $this->validate($request, [
                 'nisn' => 'required|numeric',
@@ -209,85 +262,141 @@ class AdminController extends Controller
                 'phone_number' => 'required',
             ]);
             $date_of_birth_student = Carbon::parse($request->date_of_birth);
-            $student = Student::create([
-                'name' => $request->name,
-                'nisn' => $request->nisn,
-                'nik' => $request->nik,
-                'date_of_birth' => $date_of_birth_student->format('M d Y'),
-                'gender' => $request->gender,
-                'religion' => $request->religion,
-                'address' => $request->address,
-                'last_education' => $request->last_education,
-                'phone_number' => $request->phone_number,
-                'user_id' => $user->id,
-                'verify_status' => false
-            ]);
-
+            try{
+                $student = Student::create([
+                    'name' => $request->name,
+                    'nisn' => $request->nisn,
+                    'nik' => $request->nik,
+                    'date_of_birth' => $date_of_birth_student->format('M d Y'),
+                    'gender' => $request->gender,
+                    'religion' => $request->religion,
+                    'address' => $request->address,
+                    'last_education' => $request->last_education,
+                    'phone_number' => $request->phone_number,
+                    'user_id' => $user->id,
+                    'verify_status' => false
+                ]);
+            }catch(\Exception $ex){
+                throw $ex;
+            }
+            // dd($request->name_ibu);
             if ($request->name_ibu){
                 $date_of_birth_ibu = Carbon::parse($request->date_of_birth_ibu);
-                $mother = Family::create([
-                    'name' => $request->name_ibu,
-                    'nik' => $request->nik_ibu,
-                    'date_of_birth' => $date_of_birth_ibu,
-                    'gender' => 'perempuan',
-                    'religion' => $request->religion_ibu,
-                    'address' => $request->address_ibu,
-                    'last_education' => $request->last_education_ibu,
-                    'phone_number' => $request->phone_number_ibu,
-                    'working_as' => $request->working_as_ibu,
-                    'income' => $request->income_ibu,
-                    'parent_status' => 'ibu',
-                    'student_id' => $student->id
-                ]);
+                try{
+                    $mother = Family::create([
+                        'name' => $request->name_ibu,
+                        'nik' => $request->nik_ibu,
+                        'date_of_birth' => $date_of_birth_ibu,
+                        'gender' => 'perempuan',
+                        'religion' => $request->religion_ibu,
+                        'address' => $request->address_ibu,
+                        'last_education' => $request->last_education_ibu,
+                        'phone_number' => $request->phone_number_ibu,
+                        'working_as' => $request->working_as_ibu,
+                        'income' => $request->income_ibu,
+                        'parent_status' => 'ibu',
+                        'student_id' => $student->id
+                    ]);
+                }catch(\Exception $ex){
+                    throw $ex;
+                }
             }
             if ($request->name_ayah){
                 $date_of_birth_ayah = Carbon::parse($request->date_of_birth_ayah);
-                $father = Family::create([
-                    'name' => $request->name_ayah,
-                    'nik' => $request->nik_ayah,
-                    'date_of_birth' => $date_of_birth_ayah,
-                    'gender' => $request->gender_ayah,
-                    'religion' => $request->religion_ayah,
-                    'address' => $request->address_ayah,
-                    'last_education' => $request->last_education_ayah,
-                    'phone_number' => $request->phone_number_ayah,
-                    'working_as' => $request->working_as_ayah,
-                    'income' => $request->income_ayah,
-                    'parent_status' => 'ayah',
-                    'student_id' => $student->id
-                ]);
+                try{
+                    $father = Family::create([
+                        'name' => $request->name_ayah,
+                        'nik' => $request->nik_ayah,
+                        'date_of_birth' => $date_of_birth_ayah,
+                        'gender' => $request->gender_ayah,
+                        'religion' => $request->religion_ayah,
+                        'address' => $request->address_ayah,
+                        'last_education' => $request->last_education_ayah,
+                        'phone_number' => $request->phone_number_ayah,
+                        'working_as' => $request->working_as_ayah,
+                        'income' => $request->income_ayah,
+                        'parent_status' => 'ayah',
+                        'student_id' => $student->id
+                    ]);
+                }catch(\Exception $ex){
+                    throw $ex;
+                }
             }
             if ($request->name_wali){
                 $date_of_birth_wali = Carbon::parse($request->date_of_birth_wali);
-                $wali = Family::create([
-                    'name' => $request->name_wali,
-                    'nik' => $request->nik_wali,
-                    'date_of_birth' => $date_of_birth_wali,
-                    'gender' => $request->gender_wali,
-                    'religion' => $request->religion_wali,
-                    'address' => $request->address_wali,
-                    'last_education' => $request->last_education_wali,
-                    'phone_number' => $request->phone_number_wali,
-                    'working_as' => $request->working_as_wali,
-                    'income' => $request->income_wali,
-                    'parent_status' => 'wali',
-                    'student_id' => $student->id
-                ]);
+                try{
+                    $wali = Family::create([
+                        'name' => $request->name_wali,
+                        'nik' => $request->nik_wali,
+                        'date_of_birth' => $date_of_birth_wali,
+                        'gender' => $request->gender_wali,
+                        'religion' => $request->religion_wali,
+                        'address' => $request->address_wali,
+                        'last_education' => $request->last_education_wali,
+                        'phone_number' => $request->phone_number_wali,
+                        'working_as' => $request->working_as_wali,
+                        'income' => $request->income_wali,
+                        'parent_status' => 'wali',
+                        'student_id' => $student->id
+                    ]);
+                    dd($wali);
+                }catch(\Exception $ex){
+                    throw $ex;
+                }
             }
             
 
             $uniqueId = Str::random(10);
-            $registration = Registration::create([
-                'registration_uid' => $uniqueId,
-                'student_id' => $student->id,
-                'status' => 'daftar'
-            ]);
+            try{
+                $registration = Registration::create([
+                    'registration_uid' => $uniqueId,
+                    'student_id' => $student->id,
+                    'status' => 'daftar'
+                ]);
+            }catch(\Exception $ex){
+                throw $ex;
+            }
+            DB::commit();
             return redirect()->back()->with('success', 'berhasil melakukan registrasi siswa');
         }catch(\Exception $e){
+            DB::rollback();
+            $this->rollbackAll(
+                isset($user) ? $user : null,
+                isset($student) ? $student : null,
+                isset($mother) ? $mother : null,
+                isset($father) ? $father : null,
+                isset($wali) ? $wali : null,
+                isset($registration) ? $registration : null
+            );
             return redirect()->back()->withErrors(['error_message' => $e->getMessage()]);
         }
     }
 
+    private function rollbackAll(?User $user = null, ?Student $student = null, ?Family $father = null, ?Family $mother = null, ?Family $wali = null, ?Registration $registration = null){
+        if ($user) {
+            $user->delete();
+        }
+    
+        if ($student) {
+            $student->delete();
+        }
+    
+        // Delete family members if created (optional)
+        if ($mother) {
+            $mother->delete();
+        }
+        // ... similar checks for father and wali
+        if ($father) {
+            $father->delete();
+        }
+        if ($wali) {
+            $wali->delete();
+        }
+        if ($registration) {
+            $registration->delete();
+        }
+    
+    }
     public function register_student(){
         return view('admin.register-student');
     }

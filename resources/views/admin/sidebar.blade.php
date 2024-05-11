@@ -79,6 +79,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item treeview">
+            <a href="{{route('admin.verified_students')}}" class="nav-link active">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Verified Students
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <ul class="nav nav-treeview">
               <li class="nav-item">

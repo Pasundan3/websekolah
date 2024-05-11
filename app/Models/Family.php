@@ -17,6 +17,7 @@ class Family extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    protected $table = 'families';
     protected $fillable = [
         'name',
         'nik',
@@ -31,6 +32,7 @@ class Family extends Model
         'parent_status',
         'student_id'
     ];
+    
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_id');

@@ -45,7 +45,7 @@ class Student extends Model
      */
     public function families(): HasMany
     {
-        return $this->hasMany(Family::class);
+        return $this->hasMany(Family::class, 'student_id', 'id');
     }
 
     /**

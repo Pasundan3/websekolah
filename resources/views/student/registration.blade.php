@@ -97,8 +97,8 @@
             <!-- Mother's Information -->
             <h4>Informasi Ibu</h4>
             <div class="form-group">
-                <label for="nama_ibu">Nama Ibu</label>
-                <input type="text" class="form-control" id="nama_ibu" name="nama_ibu">
+                <label for="name_ibu">Nama Ibu</label>
+                <input type="text" class="form-control" id="name_ibu" name="name_ibu">
             </div>
             <div class="form-group">
                 <label for="nik_ibu">NIK Ibu</label>
@@ -153,8 +153,8 @@
             <!-- Father's Information -->
             <h4>Informasi Ayah</h4>
             <div class="form-group">
-                <label for="nama_ayah">Nama Ayah</label>
-                <input type="text" class="form-control" id="nama_ayah" name="nama_ayah">
+                <label for="name_ayah">Nama Ayah</label>
+                <input type="text" class="form-control" id="name_ayah" name="name_ayah">
             </div>
             <div class="form-group">
                 <label for="nik_ayah">NIK Ayah</label>
@@ -209,8 +209,8 @@
              <!-- Wali's Information -->
              <h4>Informasi Wali</h4>
             <div class="form-group">
-                <label for="nama_wali">Nama Wali</label>
-                <input type="text" class="form-control" id="nama_wali" name="nama_wali">
+                <label for="name_wali">Nama Wali</label>
+                <input type="text" class="form-control" id="name_wali" name="name_wali">
             </div>
             <div class="form-group">
                 <label for="nik_wali">NIK Wali</label>

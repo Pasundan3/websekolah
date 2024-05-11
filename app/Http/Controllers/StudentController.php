@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Models\Registration;
 use Illuminate\Support\Str;
 use App\Models\Family;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {

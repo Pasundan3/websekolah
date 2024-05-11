@@ -27,43 +27,43 @@
                         <tbody>
                             <!-- <tr>
                                 <th>Registration ID</th>
-                                <td>{{ $data->registration_uid }}</td>
+                                <td>{{ $student->registration_uid }}</td>
                             </tr> -->
                             <tr>
                                 <th>NISN</th>
-                                <td>{{ $data->student->nisn }}</td>
+                                <td>{{$student->nisn }}</td>
                             </tr>
                             <tr>
                                 <th>NIK</th>
-                                <td>{{ $data->student->nik }}</td>
+                                <td>{{$student->nik }}</td>
                             </tr>
                             <tr>
                                 <th>Nama</th>
-                                <td>{{$data->student->name}}</td>
+                                <td>{{$student->name}}</td>
                             </tr>
                             <tr>
                                 <th>Riwayat SMP</th>
-                                <td>{{$data->student->last_education}}</td>
+                                <td>{{$student->last_education}}</td>
                             </tr>
                             <tr>
                                 <th>Tanggal Lahir</th>
-                                <td>{{$data->student->date_of_birth}}</td>
+                                <td>{{$student->date_of_birth}}</td>
                             </tr>
                             <tr>
                                 <th>Jenis Kelamin</th>
-                                <td>{{$data->student->gender}}</td>
+                                <td>{{$student->gender}}</td>
                             </tr>
                             <tr>
                                 <th>Agama</th>
-                                <td> {{$data->student->religion}}</td>
+                                <td> {{$student->religion}}</td>
                             </tr>
                             <tr>
                                 <th>Alamat</th>
-                                <td>{{$data->student->address}}</td>
+                                <td>{{$student->address}}</td>
                             </tr>
                             <tr>
                                 <th>No. Telp</th>
-                                <td>{{$data->student->phone_number}}</td>
+                                <td>{{$student->phone_number}}</td>
                             </tr>
                             <!-- Add more student information rows as needed -->
                         </tbody>
@@ -90,22 +90,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data->student->families as $family)
-                            <tr>
-                                <td>{{ $family->parent_status }}</td>
-                                <td>{{ $family->nik }}</td>
-                                <td>{{ $family->name }}</td>
-                                <td>{{$family->last_education}}</td>
-                                <td>{{$family->date_of_birth}}</td>
-                                <td>{{$family->gender}}</td>
-                                <td>{{$family->religion}}</td>
-                                <td>{{$family->address}}</td>
-                                <td>{{$family->phone_number}}</td>
-                                <td>{{$family->working_as}}</td>
-                                <td>{{$family->income}}</td>
-                                <!-- Add more family information rows as needed -->
-                            </tr>
+                        @if(isset($families))
+                            @foreach ($families as $family)
+                                @foreach($family as $x)
+                                    <tr>
+                                        <td>{{ $x->parent_status }}</td>
+                                        <td>{{ $x->nik }}</td>
+                                        <td>{{ $x->name }}</td>
+                                        <td>{{$x->last_education}}</td>
+                                        <td>{{$x->date_of_birth}}</td>
+                                        <td>{{$x->gender}}</td>
+                                        <td>{{$x->religion}}</td>
+                                        <td>{{$x->address}}</td>
+                                        <td>{{$x->phone_number}}</td>
+                                        <td>{{$x->working_as}}</td>
+                                        <td>{{$x->income}}</td>
+                                        <!-- Add more family information rows as needed -->
+                                    </tr>
+                                @endforeach
                             @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
