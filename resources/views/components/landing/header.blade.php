@@ -14,6 +14,7 @@
                   <li><a href="{{ route('profile') }}">Profile</a></li>
                   <li><a href="{{ route('visi-misi') }}">Visi & Misi</a></li>
                   <li><a href="{{ route('riwayat-kepala-sekolah') }}">Riwayat Kepala Sekolah</a></li>
+                  <li><a href="{{ route('staff') }}">Guru & Staff</a></li>
                   <li><a href="{{ route('struktur-organisasi') }}">Struktur Organisasi</a></li>
                 </ul>
               </li>

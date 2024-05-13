@@ -25,6 +25,7 @@ Route::get('/profile', [LandingPageController::class, 'profile'])->name('profile
 Route::get('/profile/visi-misi', [LandingPageController::class, 'visi_misi'])->name('visi-misi');
 Route::get('/profile/riwayat-kepala-sekolah', [LandingPageController::class, 'riwayat_kepala_sekolah'])->name('riwayat-kepala-sekolah');
 Route::get('/profile/struktur-organisasi', [LandingPageController::class, 'struktur_organisasi'])->name('struktur-organisasi');
+Route::get('/profile/staff', [LandingPageController::class, 'staff'])->name('staff');
 Route::get('/kontak', [LandingPageController::class, 'kontak'])->name('kontak');
 Route::get('/ppdb', [LandingPageController::class, 'ppdb'])->name('ppdb');
 Route::get('/ppdb/{year}', [LandingPageController::class, 'ppdb_by_year'])->name('ppdb-by-year');

@@ -1,5 +1,5 @@
  @extends('layouts.landing')
- @section('description', 'SMA 3 Pasundan adalah ....')
+ @section('description', 'SMA Pasundan 3 adalah ....')
  @section('keywords', 'sman, sma bandung , bandung, sma negeri, sman, sman 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
  @section('content')
@@ -32,7 +32,7 @@
                      <div class="card-body d-flex align-items-center"><i class="bg-primary bi bi-tools"></i>
                          <div class="fea-text">
                              <span class="counter fs-2">+ 28</span>
-                             <h6 class="mb-0">Tenaga Pendidik</h6>
+                             <h6 class="mb-0">Guru</h6>
                          </div>
                      </div>
                  </div>
@@ -54,7 +54,7 @@
                      <div class="card-body d-flex align-items-center"><i class="bg-info bi bi-bar-chart"></i>
                          <div class="fea-text">
                              <span class="counter fs-2">+ 15</span>
-                             <h6 class="mb-0">Tenaga Pendidik</h6>
+                             <h6 class="mb-0">Siswa</h6>
                          </div>
                      </div>
                  </div>
@@ -132,8 +132,8 @@
              <!-- Welcome Content -->
              <div class="col-12 col-sm-10 col-md-7">
                  <div class="section-heading">
-                     <h6>Kepala SMA 3 Pasundan</h6>
-                     <p>Pembelajran e-learning merupakan bagian dari tuntuan kemajuan teknologi dan komunikasi saat ini. It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
+                     <h6>Kepala Sekolah SMA Pasundan 3 Bandung</h6>
+                     <p>Pembelajaran e-learning merupakan bagian dari tuntuan kemajuan teknologi dan komunikasi saat ini. It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
                  </div>
              </div>
          </div>
@@ -173,7 +173,7 @@
              <div class="col-12 col-sm-8 col-lg-6">
                  <div class="section-heading">
                      <h6>Latest Blog's</h6>
-                     <h2>Berita RSBSA</h2>
+                     <h2>Berita PASTHREE</h2>
                      <p>It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
                  </div>
              </div>

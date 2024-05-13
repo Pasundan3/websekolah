@@ -1,6 +1,6 @@
 @extends('layouts.landing')
-@section('description', 'SMA 3 PASUNDAN adalah ....')
-@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma 3 pasundan, sma pasundan, pasunan, negeri pasundan')
+@section('description', 'SMA PASUNDAN 3 adalah ....')
+@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma pasundan 3, sma pasundan, pasunan, negeri pasundan')
 
 @section('content')
 <!-- Breadcrumb Area -->
@@ -22,7 +22,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-9 col-lg-8">
                 <div class="section-heading text-center">
-                    <h2>Visi dan Misi SMA 3 Pasundan Bandung.</h2>
+                    <h2>Visi dan Misi SMA Pasundan 3 Bandung.</h2>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-12 col-sm-9 col-md-6">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Visi SMA 3 PASUNDAN</h6>
+                                        <h6>Visi SMA PASUNDAN 3</h6>
                                         <h6 class="mb-3 mt-2">
                                             "Menghasilkan Lulusan SMA PASUNDAN 3 yang Berprestasi, Inovatif, Serasi, Agamis dan Berwawasan Lingkungan Hidup"
                                         </h6>
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="col-12 col-sm-9 col-md-6">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Misi SMA 3 PASUNDAN</h6>
+                                        <h6>Misi SMA PASUNDAN 3</h6>
                                         <h6>
                                             Untuk mencapai VISI tersebut, SMA Pasundan 3 Kota Bandung mengembangkan Permendikbud nomor 61 tahun 2014 dan berdasarkan visi Pendidikan YPDM Pasundan misi sebagai berikut:
                                         </h6>
@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="col-12 col-sm-9 col-md-6">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Tujuan SMA 3 PASUNDAN</h6>
+                                        <h6>Tujuan SMA PASUNDAN 3</h6>
                                        
                                         <p  style="color: #1f0757 !important;">
                                             "Tujuan sekolah sebagai bagian dari tujuan pendidikan nasional adalah meningkatkan

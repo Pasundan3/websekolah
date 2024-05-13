@@ -7,7 +7,7 @@
         <meta name="description" content="@yield('description')">
         <meta name="keywords" content="@yield('keywords')">
         
-        <title>{{ config('app.name', 'SMA 3 Pasundan') }}</title>
+        <title>{{ config('app.name', 'SMA Pasundan 3') }}</title>
         <!-- Favicon-->
         <link rel="shortcut icon" href="img/core-img/logo_sma_3_pasundan_bandung.png" type="image/x-icon">
         <!-- All CSS Stylesheet-->

@@ -1,6 +1,6 @@
 @extends('layouts.landing')
-@section('description', 'SMA 3 PASUNDAN adalah ....')
-@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma 3 pasundan, sma pasundan, pasunan, negeri pasundan')
+@section('description', 'SMA PASUNDAN 3 adalah ....')
+@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma pasundan 3, sma pasundan, pasunan, negeri pasundan')
 
 @section('content')
 <!-- Breadcrumb Area -->

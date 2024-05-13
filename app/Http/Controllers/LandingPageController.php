@@ -23,6 +23,10 @@ class LandingPageController extends Controller
     public function struktur_organisasi(){
         return view('landing.profile.stuktur-organisasi');
     }
+    public function staff(){
+        return view('landing.profile.teacher-staff');
+    }
+    
     public function kontak(){
         return view('landing.contact');
     }

@@ -1,6 +1,6 @@
 @extends('layouts.landing')
-@section('description', 'SMA 3 PASUNDAN adalah ....')
-@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma 3 pasundan, sma pasundan, pasunan, negeri pasundan')
+@section('description', 'SMA PASUNDAN 3 adalah ....')
+@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma pasundan 3, sma pasundan, pasunan, negeri pasundan')
 
 @section('content')
 <!-- Error Area-->
@@ -51,7 +51,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-9 col-lg-8">
                 <div class="section-heading text-center">
-                    <h2>Tentang SMA 3 Pasundan Bandung.</h2>
+                    <h2>Tentang SMA Pasundan 3 Bandung.</h2>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Tentang SMA 3 PASUNDAN</h6>
+                                        <h6>Tentang SMA PASUNDAN 3</h6>
                                         <table class="table">
                                             <tbody>
                                                 <tr>
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="col-12 col-sm-9 col-md-6">
                                     <div class="tab--text mt-3 mt-lg-5">
-                                        <h6>Sejarah SMA 3 PASUNDAN</h6>
+                                        <h6>Sejarah SMA PASUNDAN 3</h6>
 
                                         <p style="color: #1f0757 !important;">
                                             "Tujuan sekolah sebagai bagian dari tujuan pendidikan nasional adalah meningkatkan

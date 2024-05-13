@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Administrator | SMA 3 Pasundan</title>
+  <title>Administrator | SMA Pasundan 3</title>
   @yield('head')
 
   <!-- Google Font: Source Sans Pro -->

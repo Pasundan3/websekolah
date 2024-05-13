@@ -9,25 +9,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcrumb-content">
-                    <h2 class="breadcrumb-title">Struktur Organisasi</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="mb-60 d-block"></div>
-<div class="container mt-5 text-center">
-    <div class="row align-item-center justify-content-center">
-        <div class="col-md-6 align-item-center">
-            <div class="aboutUs-thumbnail text-center mt-md-5"><img class="w-75" src="{{ asset('img/bg-img/5.jpg') }}" alt=""></div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
-                <div class="card feature-card">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="fea-text">
-                            <h6>KBP. DR. drg. NELSON SITUMORANG, Sb.B.M.M., Subsp.T.M.T.M.J (K)., MH.Kes</h6>
-                            <span>KARUMKIT BHAYANGKARA SARTIKA ASIH</span>
-                        </div>
-                    </div>
+                    <h2 class="breadcrumb-title">Guru & Staff</h2>
                 </div>
             </div>
         </div>

@@ -5,8 +5,8 @@
         <div class="row g-4 g-lg-5">
             <!-- Footer Widget Area -->
             <div class="col-12 col-sm-6 col-lg-3">
-                <div class="footer-widget-area"><a class="d-block mb-4" href="index.html"><img src="{{ asset('img/core-img/logo.png')}}" alt=""></a>
-                    <p>SMA 3 pasundan adalah It's crafted with the latest trend of design &amp; coded with all modern approaches.</p>
+                <div class="footer-widget-area"><a class="d-block mb-4" href="index.html"><img src="{{ asset('img/core-img/sma3-title-black-normal.webp')}}" alt=""></a>
+                    <p>SMA 3 pasundan adalah Sekolah pilihan tepat untuk berprestasi, inovatif, berkreasi, agamis, dan berwawasan lingkungan hidup.</p>
                     <div class="footer-social-icon d-flex align-items-center mt-3"><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Facbook"><i class="bi bi-facebook"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter"><i class="bi bi-twitter"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Instagram"><i class="bi bi-instagram"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Linkedin"><i class="bi bi-linkedin"></i></a><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Youtube"><i class="bi bi-youtube"></i></a></div>
                 </div>
             </div>
@@ -15,18 +15,18 @@
                 <div class="footer-widget-area">
                     <h5 class="mb-4">Link Terkait</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Suha Mobile</a></li>
-                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Affan Mobile</a></li>
-                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Newsten Blog</a></li>
-                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Classy Multipurpose</a></li>
-                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Educamp Education</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>PPDB</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Berita</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Kurikulum</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Guru & Staff</a></li>
+                        <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Kontak</a></li>
                     </ul>
                 </div>
             </div>
             <!-- Footer Widget Area-->
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="footer-widget-area">
-                    <h5 class="mb-4">Postingan Terbaru</h5>
+                    <h5 class="mb-4">Berita Terbaru</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>Community &amp; Forum</a></li>
                         <li><a href="#" target="_blank"><i class="bi bi-caret-right"></i>About Licences</a></li>
@@ -41,7 +41,7 @@
                 <div class="footer-widget-area">
                     <h5 class="mb-4">Lokasi Kami</h5>
                     <p class="lh-base mb-3">Jl. Kebon Jati No.31 Kb.Jeruk <br> Kec.Andir, Kota Bandung, Jawa Barat.</p>
-                    <p class="mb-0">Call: +62 813-2026-4411 & +62 813-2026-4422 <br> Email: smapasundan3bdg@yahoo.com</p>
+                    <p class="mb-0">Call or Chat: +62 813-2026-4411 & +62 813-2026-4422 <br> Email: smapasundan3bdg@yahoo.com</p>
                 </div>
             </div>
         </div>

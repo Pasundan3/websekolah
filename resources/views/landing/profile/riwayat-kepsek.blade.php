@@ -1,5 +1,5 @@
 @extends('layouts.landing')
-@section('description', 'SMA 3 PASUNDAN adalah ....')
+@section('description', 'SMA PASUNDAN 3 adalah ....')
 @section('keywords', 'sman, sma bandung , bandung, sma negeri, sman, sman 3 pasundan, sma pasundan, pasunan, negeri
 pasundan')
 
@@ -10,7 +10,7 @@ pasundan')
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcrumb-content">
-                    <h2 class="breadcrumb-title">Riwayat Kepala Sekolah SMA 3 Pasundan</h2>
+                    <h2 class="breadcrumb-title">Riwayat Kepala Sekolah SMA Pasundan 3</h2>
                 </div>
             </div>
         </div>

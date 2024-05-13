@@ -22,7 +22,7 @@
         <div class="row g-4 g-lg-5 align-items-start justify-content-between">
             <div class="col-12 col-lg-6">
                 <div class="register-thumbnail">
-                  <img src="{{asset('img/core-img/sma3-title-black-normal.webp')}}" class="img-fluid" alt="logo sma 3 pasundan">
+                  <img src="{{asset('img/core-img/sma3-title-black-normal.webp')}}" class="img-fluid" alt="logo sma pasundan 3">
                 </div>
             </div>
             <div class="col-12 col-lg-6">
