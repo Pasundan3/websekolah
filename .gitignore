@@ -20,3 +20,4 @@ yarn-error.log
 github_token.txt
 PPDB.txt
 /public/uploads
+/public/receipts
