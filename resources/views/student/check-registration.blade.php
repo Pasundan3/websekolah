@@ -11,31 +11,33 @@
         NIK : {{$data->student->nik}} <br>
         NISN : {{$data->student->nisn}} <br>
         @if ($data->student->verify_status == false)
+        @if (isset($data->student->verify_information))
         <div class="alert alert-danger">
             Berkas ditolak <br>
             Alasan: {{$data->student->verify_information}}
         </div>
+        @else
+        <div class="alert alert-danger">
+            Berkas belum diverifikasi <br>
+        </div>
+        @endif
         @elseif ($data->student->verify_status == true)
-        @if($data->status == 'accept')
+        <div class="alert alert-success">
+            Berkas diterima
+        </div>
+        @if($data->student->registration->status == 'accept')
         <div class="alert alert-success">
             Pendaftaran diterima
         </div>
-        @elseif($data->status == 'reject')
+        @elseif($data->student->registration->status == 'reject')
         <div class="alert alert-danger">
             Pendaftaran ditolak
-            Alasan: {{$data->status_information}}
+            Alasan: {{$data->student->registration->status_information}}
         </div>
         @endif
         @endif
         @endif
         <br>
-        <form action="{{route('student.check-registration')}}" method="post">
-            @csrf
-            <label for="registration_uid">Nomor Registrasi</label>
-            <input type="text" name="registration_uid" id="registration_uid">
-
-            <button type="submit">Submit</button>
-        </form>
     </div>
 </div>
 @endsection

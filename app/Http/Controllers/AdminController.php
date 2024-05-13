@@ -16,6 +16,8 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use DB;
+use App\Models\Family;
 
 class AdminController extends Controller
 {
@@ -141,9 +143,10 @@ class AdminController extends Controller
             $data->save();
 
             $payment_registration = new PaymentRegistration;
-            $payment_registration->registration_uid = $data->id;
+            $payment_registration->registration_id = $data->id;
             $payment_registration->amount = $data->amount;
             $payment_registration->remaining_amount = $data->amount;
+            $payment_registration->save();
 
             return redirect()->back()->with('success', 'berhasil menambah biaya pendidikan');
         }catch(\Exception $e){
@@ -212,7 +215,7 @@ class AdminController extends Controller
             $families = $student->families;
         }
 
-        dd($student);
+        // dd($);
 
         return view('admin.detail-student', ['data' => $registration, 'student' => $student, 'families' => $families]);
     }
@@ -308,7 +311,7 @@ class AdminController extends Controller
                         'name' => $request->name_ayah,
                         'nik' => $request->nik_ayah,
                         'date_of_birth' => $date_of_birth_ayah,
-                        'gender' => $request->gender_ayah,
+                        'gender' => 'laki-laki',
                         'religion' => $request->religion_ayah,
                         'address' => $request->address_ayah,
                         'last_education' => $request->last_education_ayah,

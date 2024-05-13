@@ -10,7 +10,12 @@ use Carbon\Carbon;
 use App\Models\Registration;
 use Illuminate\Support\Str;
 use App\Models\Family;
+use App\Models\PaymentHistory;
 use Illuminate\Support\Facades\Hash;
+use Dompdf\Dompdf;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -135,9 +140,9 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($registration_uid)
+    public function show_detail()
     {
-        $data = Registration::where('registration_uid', $registration_uid)->with('student')->with('student.families')->first();
+        $data = User::where('id', auth()->id())->with('student')->with('student.registration')->with('student.families')->first();
         return view('student.show', ['data' => $data]);
     }
 
@@ -207,11 +212,15 @@ class StudentController extends Controller
     }
 
     public function check_registration_view(){
-        return view('student.check-registration');
+        $data = User::where('id', auth()->id())->with('student')->with('student.registration')->first();
+        // dd($data);
+        return view('student.check-registration', ['data' => $data]);
     }
 
-    public function check_remaining_amount($registration_uid){
-        $data = Registration::where('registration_uid', $registration_uid)->with('payment_registration')->first();
+    public function check_remaining_amount(){
+        $user = User::where('id', auth()->id())->with('student')->with('student.registration')->first();
+        $data = Registration::where('registration_uid', $user->student->registration->registration_uid)->with('payment_registration')->with('payment_histories')->first();
+        // dd($data);
         return view('student.check-remaining-amount', ['data' => $data]);
     }
 
@@ -226,18 +235,42 @@ class StudentController extends Controller
                 'amount' => 'required'
             ]);
 
-            $data = Registration::where('registrations.registration_uid', $registration_uid)->with('payment_registration')->first();
+            $data = Registration::where('registrations.registration_uid', $registration_uid)->with('payment_registration')->with('student')->first();
             if ($data->payment_registration->remaining_amount > 0){
-
                 $payment_history = PaymentHistory::create([
                     'registration_id' => $data->id,
                     'amount' => $request->amount
                 ]);
+                
                 $remaining_amount = $data->payment_registration->remaining_amount - $request->amount;
                 if ($remaining_amount <= 0){
                     $data->payment_registration->remaining_amount = 0;
-                    $data->save();
                 } 
+                $data->payment_registration->remaining_amount = $remaining_amount;
+                $data->payment_registration->save();
+                $data->save();
+
+                $receiptData = [
+                    'name' => $data->student->name,
+                    'amount_paid' => $payment_history->amount,
+                    'payment_date' => $payment_history->created_at,
+                    'remaining_amount' => $data->payment_registration->remaining_amount,
+                    'registration_id' => $data->id,
+                    'id' => $payment_history->id
+                ];
+
+                $receiptUrl = $this->generateReceipt($receiptData);
+                $payment_history->receipt = $receiptUrl;
+                $payment_history->save();
+
+                // $response = new BinaryFileResponse($receiptUrl);
+                // $response->deleteFileAfterSend(true);
+                // $response->setContentDisposition('attachment', 'receipt.pdf');
+
+                // Redirect back to the previous page
+                Session::flash('payment_history_id', $payment_history->id);
+                return Redirect::back()->with('success', 'Receipt downloaded successfully.');
+                
             }
         }catch(\Exception $e){
             return redirect()->back()->withErrors(['error', $e->getMessage()]);
@@ -246,15 +279,51 @@ class StudentController extends Controller
 
     public function pay_amount(Request $request){
         try{
-            $this->validate($request, [
-                'registration_uid' => 'required'
-            ]);
-            $registration_uid = $request->registration_uid;
-            $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
+            $user = User::where('id', auth()->id())->with('student')->with('student.registration')->first();
+            $data = Registration::where('registration_uid', $user->student->registration->registration_uid)->with('student')->first();
             return view('student.payment', ['data' => $data]);
         }catch(\Exception $e){
             return view('student.payment')->withErrors(['error', $e->getMessage()]);
         }
+    }
+
+    private function generateReceipt($data){
+        $dompdf = new Dompdf();
+
+        // Retrieve receipt HTML content (you would need to customize this based on your data)
+        $html = '<html><body>';
+        $html .= '<h1>Kwitansi Pembayaran</h1>';
+        $html .= '<p>Nama siswa: ' . $data['name'] . '</p>';
+        $html .= '<p>Jumlah yang dibayar: ' . $data['amount_paid'] . '</p>';
+        $html .= '<p>Tanggal pembayaran: ' . $data['payment_date'] . '</p>';
+        // Add more receipt details as needed
+        $html .= '</body></html>';
+
+        // Load HTML content into Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set paper size and orientation (optional)
+        $dompdf->setPaper('B5', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Get the generated PDF content
+        $pdfContent = $dompdf->output();
+
+        $pdfDirectory = public_path('receipts');
+        if (!file_exists($pdfDirectory)) {
+            mkdir($pdfDirectory, 0777, true); // Create the directory recursively
+        }
+
+        // Save PDF to server
+        $pdfFileName = 'receipt_' . $data['id'] . '.pdf';
+        $pdfFilePath = public_path('receipts/' . $pdfFileName); // Use public_path() to get the local file path
+        file_put_contents($pdfFilePath, $pdfContent);
+        $url = asset('receipts/'.$pdfFileName);
+
+        // Return the file path
+        return $url;
     }
 
 }

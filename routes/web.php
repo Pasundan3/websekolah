@@ -61,19 +61,22 @@ Route::get('/sys/clear', function () {
 
 // Student 
 Route::middleware(['auth','checkRole:siswa'])->group(function () {
+    // Specific route for displaying student detail
+    
+    Route::get('/student/detail', [\App\Http\Controllers\StudentController::class, 'show_detail'])->name('student.show');
+    // Other routes
     Route::get('/student/create', [\App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
     Route::post('/student', [\App\Http\Controllers\StudentController::class, 'store'])->name('student.store');
     Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'update'])->name('student.update');
     Route::delete('/student/{id}', [\App\Http\Controllers\StudentController::class, 'delete'])->name('student.delete');
-    Route::get('/student/{registration_uid}', [\App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
-    Route::get('/student',[\App\Http\Controllers\StudentController::class, 'index'])->name('student.index');  
-    // 
-    Route::get('/student/check-registration', [\App\Http\StudentControllers::class, 'check_registration_view'])->name('student.check-registration.view');
-    Route::post('/student/check-registration', [\App\Http\StudentControllers::class, 'check_registration'])->name('student.check-registration');
-    Route::get('/student/cek-sisa-pembayaran', [\App\Http\StudentControllers::class, 'check_remaining_amount'])->name('student.check-remaining-amount');  
-    Route::post('/student/bayar', [\App\Http\StudentControllers::class, 'pay_remaining_amount'])->name('student.pay');
-    Route::get('/student/bayar', [\App\Http\StudentControllers::class, 'pay_amount'])->name('student.pay_amount');
+    Route::get('/student/check-registration', [\App\Http\Controllers\StudentController::class, 'check_registration_view'])->name('student.check-registration.view');
+    Route::get('/student', [\App\Http\Controllers\StudentController::class, 'index'])->name('student.index');  
+    Route::post('/student/check-registration', [\App\Http\Controllers\StudentController::class, 'check_registration'])->name('student.check-registration');
+    Route::get('/student/cek-sisa-pembayaran', [\App\Http\Controllers\StudentController::class, 'check_remaining_amount'])->name('student.check-remaining-amount');  
+    Route::post('/student/bayar/{registration_uid}', [\App\Http\Controllers\StudentController::class, 'pay_remaining_amount'])->name('student.pay');
+    Route::get('/student/bayar', [\App\Http\Controllers\StudentController::class, 'pay_amount'])->name('student.pay_amount');
 });
+
 
 Route::get('admin-login',[\App\Http\Controllers\AdminController::class, 'login_admin'])->name('admin.login');
 // Admin

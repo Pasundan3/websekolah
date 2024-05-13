@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h2>Input Biaya Pembayaran</h2>
+        <h2>Input Biaya Pendidikan</h2>
     </div>
     <div class="card-body">
         <h6>nama: {{$data->student->name}}</h6>

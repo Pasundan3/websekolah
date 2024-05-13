@@ -1,11 +1,10 @@
 @extends('admin.app')
 
 @section('content')
-<h2>Ini tampilan awal student</h2>
 
 <!-- @aldy : Alert ini hilang sudah selesai daftar ya si studenntnya. -->
 <div class="alert alert-warning" role="alert">
-  Kamu belum melengkapi formulir pendafaran, silahkan klik <a href="{{url('/student/create')}}">Lengkapi Formulir</a> untuk melanjutkan pendaftara.
+  Kamu belum melengkapi formulir pendafaran, silahkan klik <a href="{{url('/student/create')}}">Lengkapi Formulir</a> untuk melanjutkan pendaftaran.
 </div>
 
 <!-- @aldy : Button ini hilang atau ganti ke url show kalau sudah pernah daftar ya si studenntnya. -->

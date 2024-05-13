@@ -27,7 +27,7 @@
                         <tbody>
                             <tr>
                                 <th>Registration ID</th>
-                                <td>{{ $data->registration_uid }}</td>
+                                <td>{{ $data->student->registration->registration_uid }}</td>
                             </tr>
                             <tr>
                                 <th>NISN</th>

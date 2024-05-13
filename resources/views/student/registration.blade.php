@@ -242,6 +242,18 @@
                 </div>
             </div>
             <div class="form-group">
+                <div class="col-md-6">
+                    <label for="gender_wali">Jenis Kelamin</label>
+                    <div>
+                        <input type="radio" id="male" name="gender_wali" value="Laki-laki" required>
+                        <label for="male">Laki-laki</label>
+                        <input type="radio" id="female" name="gender_wali" value="Perempuan" required>
+                        <label for="female">Perempuan</label>
+                    </div>
+                    <div class="invalid-feedback">Mohon pilih jenis kelamin.</div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="address_wali">Alamat Wali</label>
                 <input type="text" class="form-control" id="address_wali" name="address_wali">
             </div>

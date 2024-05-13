@@ -91,25 +91,27 @@
                         </thead>
                         <tbody>
                         @if(isset($families))
+                            @if(count($families) > 0)
                             @foreach ($families as $family)
-                                @foreach($family as $x)
                                     <tr>
-                                        <td>{{ $x->parent_status }}</td>
-                                        <td>{{ $x->nik }}</td>
-                                        <td>{{ $x->name }}</td>
-                                        <td>{{$x->last_education}}</td>
-                                        <td>{{$x->date_of_birth}}</td>
-                                        <td>{{$x->gender}}</td>
-                                        <td>{{$x->religion}}</td>
-                                        <td>{{$x->address}}</td>
-                                        <td>{{$x->phone_number}}</td>
-                                        <td>{{$x->working_as}}</td>
-                                        <td>{{$x->income}}</td>
+                                        <td>{{ $family->parent_status }}</td>
+                                        <td>{{ $family->nik }}</td>
+                                        <td>{{ $family->name }}</td>
+                                        <td>{{$family->last_education}}</td>
+                                        <td>{{$family->date_of_birth}}</td>
+                                        <td>{{$family->gender}}</td>
+                                        <td>{{$family->religion}}</td>
+                                        <td>{{$family->address}}</td>
+                                        <td>{{$family->phone_number}}</td>
+                                        <td>{{$family->working_as}}</td>
+                                        <td>{{$family->income}}</td>
                                         <!-- Add more family information rows as needed -->
                                     </tr>
-                                @endforeach
                             @endforeach
+                            @else
+                                <tr>No Data</tr>
                             @endif
+                        @endif
                         </tbody>
                     </table>
                 </div>
