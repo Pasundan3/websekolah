@@ -87,14 +87,27 @@
               </p>
             </a>
           </li>
-          <li class="nav-item treeview">
-            <a href="{{route('admin.verified_students')}}" class="nav-link active">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Verified Students
-              </p>
-            </a>
+          <li class="nav-item">
+            <li class="nav-item treeview">
+              <a href="{{route('admin.verified_students')}}" class="nav-link active">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Verified Students
+                </p>
+              </a>
+            </li>
           </li>
+          <li class="nav-item">
+            <li class="nav-item treeview">
+              <a href="{{route('admin.list_accept_students')}}" class="nav-link active">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Accept Students
+                </p>
+              </a>
+            </li>
+          </li>
+          
           <li class="nav-item">
             <ul class="nav nav-treeview">
               <li class="nav-item">

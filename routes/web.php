@@ -63,7 +63,6 @@ Route::get('/sys/clear', function () {
 // Student 
 Route::middleware(['auth','checkRole:siswa'])->group(function () {
     // Specific route for displaying student detail
-    
     Route::get('/student/detail', [\App\Http\Controllers\StudentController::class, 'show_detail'])->name('student.show');
     // Other routes
     Route::get('/student/create', [\App\Http\Controllers\StudentController::class, 'create'])->name('student.create');
@@ -95,6 +94,9 @@ Route::middleware(['auth','checkRole:admin'])->group(function () {
     Route::get('admin/register-student', [\App\Http\Controllers\AdminController::class, 'register_student'])->name('admin.register_student');
     Route::post('admin/register-student', [\App\Http\Controllers\AdminController::class, 'create_student'])->name('admin.create_student');
     Route::get('admin/verified-student', [\App\Http\Controllers\AdminController::class, 'list_verified_students'])->name('admin.verified_students');
+    Route::post('admin/bayar/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'pay_remaining_amount'])->name('admin.pay');
+    Route::get('admin/bayar/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'pay_amount'])->name('admin.pay_amount');
+    Route::get('admin/list-accept-student', [\App\Http\Controllers\AdminController::class, 'list_accept_students'])->name('admin.list_accept_students');
     // Route::get('admin/list-verified-student', [\App\Http\Controllers\AdminController::class, 'verified_students'])->name('admin.list_verified_students');
 });
 

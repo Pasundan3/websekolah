@@ -29,8 +29,9 @@ class AdminController extends Controller
     ->whereExists(function ($query) {
         $query->select('id')
             ->from('registrations')
-            ->whereColumn('registrations.student_id', 'students.id');
-    })
+            ->whereColumn('registrations.student_id', 'students.id')
+            ->where('registrations.status','!=', 'accept' );
+        })
     ->get();
 
             return Datatables::of($data)
@@ -403,4 +404,131 @@ class AdminController extends Controller
     public function register_student(){
         return view('admin.register-student');
     }
+    public function pay_remaining_amount(Request $request, $registration_uid){
+        try{
+            $this->validate($request, [
+                'amount' => 'required'
+            ]);
+
+            $data = Registration::where('registrations.registration_uid', $registration_uid)->with('payment_registration')->with('student')->first();
+            if ($data->payment_registration->remaining_amount > 0){
+                $payment_history = PaymentHistory::create([
+                    'registration_id' => $data->id,
+                    'amount' => $request->amount
+                ]);
+                
+                $remaining_amount = $data->payment_registration->remaining_amount - $request->amount;
+                if ($remaining_amount <= 0){
+                    $data->payment_registration->remaining_amount = 0;
+                } 
+                $data->payment_registration->remaining_amount = $remaining_amount;
+                $data->payment_registration->save();
+                $data->save();
+
+                $receiptData = [
+                    'name' => $data->student->name,
+                    'amount_paid' => $payment_history->amount,
+                    'payment_date' => $payment_history->created_at,
+                    'remaining_amount' => $data->payment_registration->remaining_amount,
+                    'registration_id' => $data->id,
+                    'id' => $payment_history->id
+                ];
+
+                $receiptUrl = $this->generateReceipt($receiptData);
+                $payment_history->receipt = $receiptUrl;
+                $payment_history->save();
+
+                // $response = new BinaryFileResponse($receiptUrl);
+                // $response->deleteFileAfterSend(true);
+                // $response->setContentDisposition('attachment', 'receipt.pdf');
+
+                // Redirect back to the previous page
+                Session::flash('payment_history_id', $payment_history->id);
+                return Redirect::back()->with('success', 'Receipt downloaded successfully.');
+                
+            }
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors(['error', $e->getMessage()]);
+        }
+    }
+
+    public function pay_amount(Request $request, $registration_uid){
+        try{
+            $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
+            return view('student.payment', ['data' => $data]);
+        }catch(\Exception $e){
+            return view('student.payment')->withErrors(['error', $e->getMessage()]);
+        }
+    }
+
+    private function generateReceipt($data){
+        $dompdf = new Dompdf();
+
+        // Retrieve receipt HTML content (you would need to customize this based on your data)
+        $html = '<html><body>';
+        $html .= '<h1>Kwitansi Pembayaran</h1>';
+        $html .= '<p>Nama siswa: ' . $data['name'] . '</p>';
+        $html .= '<p>Jumlah yang dibayar: ' . $data['amount_paid'] . '</p>';
+        $html .= '<p>Tanggal pembayaran: ' . $data['payment_date'] . '</p>';
+        // Add more receipt details as needed
+        $html .= '</body></html>';
+
+        // Load HTML content into Dompdf
+        $dompdf->loadHtml($html);
+
+        // Set paper size and orientation (optional)
+        $dompdf->setPaper('B5', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Get the generated PDF content
+        $pdfContent = $dompdf->output();
+
+        $pdfDirectory = public_path('receipts');
+        if (!file_exists($pdfDirectory)) {
+            mkdir($pdfDirectory, 0777, true); // Create the directory recursively
+        }
+
+        // Save PDF to server
+        $pdfFileName = 'receipt_' . $data['id'] . '.pdf';
+        $pdfFilePath = public_path('receipts/' . $pdfFileName); // Use public_path() to get the local file path
+        file_put_contents($pdfFilePath, $pdfContent);
+        $url = asset('receipts/'.$pdfFileName);
+
+        // Return the file path
+        return $url;
+    }
+
+    public function list_accept_students(Request $request){
+        if ($request->ajax()){
+            $data = Student::with('families', 'registration') // Load families and registration
+            ->where('verify_status', true)
+            ->whereExists(function ($query) {
+                $query->select('id')
+                    ->from('registrations')
+                    ->whereColumn('registrations.student_id', 'students.id')
+                    ->where('registrations.status', 'accept');
+            })
+            ->get();
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $registrationUid = $row->registration ? $row->registration->registration_uid : null;
+
+                        $btn = '<a href="' . route('admin.student_detail', ['registration_uid' => $registrationUid]) . '" class="btn btn-primary">View Details</a><br>
+                                <a href="'.route('admin.pay_amount', ['registration_uid' => $registrationUid]).'" class="btn btn-success">Pay</a>
+                                ';
+
+      
+                         return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        
+        return view('admin.accept-student');
+    }
+
 }

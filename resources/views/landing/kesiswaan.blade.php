@@ -1,5 +1,5 @@
 @extends('layouts.landing')
- @section('description', 'SMA PASUNDAN 3 adalah ....')
+ @section('description', 'SMAS PASUNDAN 3 adalah ....')
  @section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma pasundan 3, sma pasundan, pasunan, negeri pasundan')
 
  @section('content')

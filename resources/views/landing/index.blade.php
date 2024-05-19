@@ -1,5 +1,5 @@
  @extends('layouts.landing')
- @section('description', 'SMA Pasundan 3 adalah ....')
+ @section('description', 'SMAS Pasundan 3 adalah ....')
  @section('keywords', 'sman, sma bandung , bandung, sma negeri, sman, sman 3 pasundan, sma pasundan, pasunan, negeri pasundan')
 
  @section('content')
@@ -132,7 +132,7 @@
              <!-- Welcome Content -->
              <div class="col-12 col-sm-10 col-md-7">
                  <div class="section-heading">
-                     <h6>Kepala Sekolah SMA Pasundan 3 Bandung</h6>
+                     <h6>Kepala Sekolah SMAS Pasundan 3 Bandung</h6>
                      <p>Pembelajaran e-learning merupakan bagian dari tuntuan kemajuan teknologi dan komunikasi saat ini. It's crafted with the latest trend of design &amp; coded with all modern approaches. It's a robust &amp; multi-dimensional usable template.</p>
                  </div>
              </div>
