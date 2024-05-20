@@ -13,7 +13,7 @@
                 window.onload = function() {
                     setTimeout(function() {
                         document.getElementById('downloadLink').click();
-                        window.location.href = "{{ route('student.pay_amount') }}"; // Redirect to another page after download
+                        window.location.href = "{{ route('admin.list_accept_students') }}"; // Redirect to another page after download
                     }, 500); // Adjust the delay as needed
                 }
             </script>
@@ -27,7 +27,7 @@
     </div>
     <div class="card-body">
         
-        <form action="{{route('student.pay', ['registration_uid' => $data->registration_uid])}}" method="post">
+        <form action="{{route('admin.pay', ['registration_uid' => $data->registration_uid])}}" method="post">
             @csrf
             <label for="amount">Jumlah</label>
             <input type="text" name="amount" id="amount">

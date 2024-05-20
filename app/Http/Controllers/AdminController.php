@@ -18,6 +18,10 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use DB;
 use App\Models\Family;
+use Dompdf\Dompdf;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
