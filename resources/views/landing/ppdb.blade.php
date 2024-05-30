@@ -38,7 +38,7 @@
              </div>
              <!-- Welcome Thumb -->
              <div class="col-12 col-sm-9 col-md-6">
-                 <div class="welcome-thumb ms-xl-5 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s"><img src="img/illustrator/hero-3.png" alt=""></div>
+                 <div class="welcome-thumb ms-xl-5 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s"><img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3" style="max-height:450px;"></div>
              </div>
          </div>
      </div>

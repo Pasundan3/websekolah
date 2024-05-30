@@ -25,7 +25,9 @@
          <div class="row  align-items-center">
              <!-- Welcome Thumb -->
              <div class="col-12 col-sm-12 col-md-12 text-center mb-5">
-                 <div class="welcome-thumb ms-xl-5 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s"><img src="img/illustrator/hero-3.png" alt="" class="img-fluid"></div>
+                 <div class="welcome-thumb ms-xl-5">
+                    <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3" class="img-fluid mt-2" style="max-height:450px;">
+                </div>
              </div>
              <div class="col-12 col-sm-10 col-md-6 col-lg-4 mb-2">
                  <div class="card feature-card">
@@ -127,7 +129,8 @@
          <div class="row h-100 align-items-center justify-content-between">
              <!-- Welcome Thumb -->
              <div class="col-12 col-sm-9 col-md-4">
-                 <div class="welcome-thumb ms-xl-2 wow"><img src="img/illustrator/hero-3.png" alt=""></div>
+                 <div class="welcome-thumb ms-xl-2 wow">
+                    <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3"></div>
              </div>
              <!-- Welcome Content -->
              <div class="col-12 col-sm-10 col-md-7">
@@ -150,7 +153,7 @@
              <div class="card-body">
                  <div class="row align-items-center justify-content-between">
                      <div class="col-12 col-sm-3 col-md-2">
-                         <div class="welcome-thumb ms-xl-1 wow"><img src="img/illustrator/hero-3.png" alt=""></div>
+                         <div class="welcome-thumb ms-xl-1 wow"><img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3"></div>
                      </div>
                      <div class="col-12 col-sm-7">
                          <div class="cta-text mb-4 mb-sm-0 wow fadeInUp">
