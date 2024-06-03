@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('registration_id');
             $table->string('amount');
+            $table->string('pendaftaran');
+            $table->string('seragam');
+            $table->string('spp');
+            $table->string('dsp');
+            $table->string('kegiatan_awal');
             $table->text('image_url'); //bukti pembayaran
             $table->text('receipt');
             $table->timestamps();

@@ -12,6 +12,11 @@ class PaymentHistory extends Model
         'registration_id',
         'amount',
         'image_url',
+        'pendaftaran',
+        'kegiatan_awal',
+        'seragam',
+        'spp',
+        'dsp'
     ];
 
     public function registration(): BelongsTo

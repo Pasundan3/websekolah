@@ -411,17 +411,26 @@ class AdminController extends Controller
     public function pay_remaining_amount(Request $request, $registration_uid){
         try{
             $this->validate($request, [
-                'amount' => 'required'
+                'pendaftaran',
+                'kegiatan_awal',
+                'seragam',
+                'spp',
+                'dsp'
             ]);
 
             $data = Registration::where('registrations.registration_uid', $registration_uid)->with('payment_registration')->with('student')->first();
             if ($data->payment_registration->remaining_amount > 0){
                 $payment_history = PaymentHistory::create([
                     'registration_id' => $data->id,
-                    'amount' => $request->amount
+                    'pendaftaran' => $request->pendaftaran,
+                    'kegiatan_awal' => $request->kegiatan_awal,
+                    'seragam' => $request->seragam,
+                    'spp' => $request->spp,
+                    'dsp' => $request->dsp,
+                    'amount' => $request->pendaftaran + $request->kegiatan_awal + $request->seragam + $request->spp + $request->dsp
                 ]);
                 
-                $remaining_amount = $data->payment_registration->remaining_amount - $request->amount;
+                $remaining_amount = $data->payment_registration->remaining_amount - ($request->pendaftaran + $request->kegiatan_awal + $request->seragam + $request->spp + $request->dsp);
                 if ($remaining_amount <= 0){
                     $data->payment_registration->remaining_amount = 0;
                 } 
@@ -431,7 +440,12 @@ class AdminController extends Controller
 
                 $receiptData = [
                     'name' => $data->student->name,
-                    'amount_paid' => $payment_history->amount,
+                    'pendaftaran' => $request->pendaftaran,
+                    'kegiatan_awal' => $request->kegiatan_awal,
+                    'seragam' => $request->seragam,
+                    'spp' => $request->spp,
+                    'dsp' => $request->dsp,
+                    'amount_paid' => $request->pendaftaran + $request->kegiatan_awal + $request->seragam + $request->spp + $request->dsp,
                     'payment_date' => $payment_history->created_at,
                     'remaining_amount' => $data->payment_registration->remaining_amount,
                     'registration_id' => $data->id,
@@ -458,7 +472,8 @@ class AdminController extends Controller
 
     public function pay_amount(Request $request, $registration_uid){
         try{
-            $data = Registration::where('registration_uid', $registration_uid)->with('student')->first();
+            $data = Registration::where('registration_uid', $registration_uid)->with('student')->with('payment_registration')->first();
+            // dd($data);
             return view('student.payment', ['data' => $data]);
         }catch(\Exception $e){
             return view('student.payment')->withErrors(['error', $e->getMessage()]);
@@ -469,13 +484,98 @@ class AdminController extends Controller
         $dompdf = new Dompdf();
 
         // Retrieve receipt HTML content (you would need to customize this based on your data)
-        $html = '<html><body>';
-        $html .= '<h1>Kwitansi Pembayaran</h1>';
-        $html .= '<p>Nama siswa: ' . $data['name'] . '</p>';
-        $html .= '<p>Jumlah yang dibayar: ' . $data['amount_paid'] . '</p>';
-        $html .= '<p>Tanggal pembayaran: ' . $data['payment_date'] . '</p>';
-        // Add more receipt details as needed
-        $html .= '</body></html>';
+        // $html = '<html><body>';
+        // $html .= '<h1>Kwitansi Pembayaran</h1>';
+        // $html .= '<p>Nama siswa: ' . $data['name'] . '</p>';
+        // $html .= '<p>Jumlah yang dibayar: ' . $data['amount_paid'] . '</p>';
+        // $html .= '<p>Tanggal pembayaran: ' . $data['payment_date'] . '</p>';
+        // // Add more receipt details as needed
+        // $html .= '</body></html>';
+        $html = '<html lang="en">
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                }
+                .title {
+                    text-align: center;
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                }
+                .table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                }
+                .table td {
+                    padding: 8px;
+                    vertical-align: top;
+                }
+                .table td:first-child {
+                    width: 200px;
+                }
+                .signature-section {
+                    text-align: right;
+                    margin-top: 50px;
+                }
+                .signature-line {
+                    margin-top: 60px;
+                }
+            </style>
+            <script>
+                window.onload = function() {
+                    window.print();
+                };
+            </script>
+        </head>
+        <body>
+        
+            <div class="title">BUKTI PEMBAYARAN UANG SEKOLAH</div>
+        
+            <table class="table">
+                <tr>
+                    <td>NAMA SISWA</td>
+                    <td>: '.$data['name'].'</td>
+                </tr>
+            </table>
+        
+            <table class="table">
+                <tr>
+                    <td>Pendaftaran</td>
+                    <td>: Rp. '.$data['pendaftaran'].'</td>
+                </tr>
+                <tr>
+                    <td>Kegiatan Awal PPDB</td>
+                    <td>: Rp. '.$data['kegiatan_awal'].'</td>
+                </tr>   
+                <tr>
+                    <td>Seragam/PSAS</td>
+                    <td>: Rp. '.$data['seragam'].'</td>
+                </tr>
+                <tr>
+                    <td>SPP Bulan</td>
+                    <td>: Rp. '.$data['spp'].'</td>
+                </tr>
+                <tr>
+                    <td>Dana Sumbangan Pendidikan (DSP)</td>
+                    <td>: Rp. '.$data['dsp'].'</td>
+                </tr>
+                <tr>
+                    <td>JUMLAH</td>
+                    <td>: Rp. '.$data['amount_paid'].'</td>
+                </tr>
+            </table>
+        
+            <div class="signature-section">
+                Bandung, '.date("Y-m-d").'<br>
+                Bendahara SMA Pasundan 3 Bandung
+                <div class="signature-line">--------------------------------------------</div>
+            </div>
+        
+        </body>
+        </html>';
 
         // Load HTML content into Dompdf
         $dompdf->loadHtml($html);
