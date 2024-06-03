@@ -485,6 +485,17 @@ class AdminController extends Controller
 
     private function generateReceipt($data){
         $dompdf = new Dompdf();
+        setlocale(LC_TIME, 'id_ID.UTF-8');
+
+        // Use Carbon's setLocale method
+        Carbon::setLocale('id');
+
+        // Create a Carbon instance for your date
+        $date = Carbon::now();
+
+        // Format the date in Indonesian
+        $formattedDate = $date->translatedFormat('j F Y');
+        // dd($formattedDate);
 
         // Retrieve receipt HTML content (you would need to customize this based on your data)
         // $html = '<html><body>';
@@ -572,7 +583,7 @@ class AdminController extends Controller
             </table>
         
             <div class="signature-section">
-                Bandung, '.date("Y-m-d").'<br>
+                Bandung, '.$formattedDate.'<br>
                 Bendahara SMA Pasundan 3 Bandung
                 <div class="signature-line">--------------------------------------------</div>
             </div>
