@@ -97,6 +97,7 @@ Route::middleware(['auth','checkRole:admin'])->group(function () {
     Route::post('admin/bayar/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'pay_remaining_amount'])->name('admin.pay');
     Route::get('admin/bayar/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'pay_amount'])->name('admin.pay_amount');
     Route::get('admin/list-accept-student', [\App\Http\Controllers\AdminController::class, 'list_accept_students'])->name('admin.list_accept_students');
+    Route::get('admin/check-remaining-amount/{registration_uid}', [\App\Http\Controllers\AdminController::class, 'check_remaining_amount'])->name('admin.check_pay_histories');
     // Route::get('admin/list-verified-student', [\App\Http\Controllers\AdminController::class, 'verified_students'])->name('admin.list_verified_students');
 });
 

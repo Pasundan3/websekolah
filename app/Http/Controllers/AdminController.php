@@ -636,7 +636,8 @@ class AdminController extends Controller
                         $registrationUid = $row->registration ? $row->registration->registration_uid : null;
 
                         $btn = '<a href="' . route('admin.student_detail', ['registration_uid' => $registrationUid]) . '" class="btn btn-primary">View Details</a><br>
-                                <a href="'.route('admin.pay_amount', ['registration_uid' => $registrationUid]).'" class="btn btn-success">Pay</a>
+                                <a href="'.route('admin.pay_amount', ['registration_uid' => $registrationUid]).'" class="btn btn-success">Pay</a><br>
+                                <a href="'.route('admin.check_pay_histories', ['registration_uid' => $registrationUid]).'" class="btn btn-secondary"> Show histories</a>
                                 ';
 
       
@@ -647,6 +648,13 @@ class AdminController extends Controller
         }
         
         return view('admin.accept-student');
+    }
+
+    public function check_remaining_amount($registration_uid){
+        // $user = User::where('id', auth()->id())->with('student')->with('student.registration')->first();
+        $data = Registration::where('registration_uid', $registration_uid)->with('payment_registration')->with('payment_histories')->first();
+        // dd($data);
+        return view('student.check-remaining-amount', ['data' => $data]);
     }
 
 }
