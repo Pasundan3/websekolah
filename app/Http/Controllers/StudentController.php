@@ -58,7 +58,7 @@ class StudentController extends Controller
                 'name' => $request->name,
                 'nisn' => $request->nisn,
                 'nik' => $request->nik,
-                'date_of_birth' => $date_of_birth_student->format('M d Y'),
+                'date_of_birth' => $date_of_birth_student->format('Y-m-d'),
                 'gender' => $request->gender,
                 'religion' => $request->religion,
                 'address' => $request->address,
@@ -71,7 +71,7 @@ class StudentController extends Controller
             ]);
 
             if ($request->name_ibu){
-                $date_of_birth_ibu = Carbon::parse($request->date_of_birth_ibu);
+                $date_of_birth_ibu = Carbon::parse($request->date_of_birth_ibu)->format('Y-m-d');
                 $mother = Family::create([
                     'name' => $request->name_ibu,
                     'nik' => $request->nik_ibu,
@@ -88,7 +88,7 @@ class StudentController extends Controller
                 ]);
             }
             if ($request->name_ayah){
-                $date_of_birth_ayah = Carbon::parse($request->date_of_birth_ayah);
+                $date_of_birth_ayah = Carbon::parse($request->date_of_birth_ayah)->format('Y-m-d');
                 $father = Family::create([
                     'name' => $request->name_ayah,
                     'nik' => $request->nik_ayah,
@@ -105,7 +105,7 @@ class StudentController extends Controller
                 ]);
             }
             if ($request->name_wali){
-                $date_of_birth_wali = Carbon::parse($request->date_of_birth_wali);
+                $date_of_birth_wali = Carbon::parse($request->date_of_birth_wali)->format('Y-m-d');
                 $wali = Family::create([
                     'name' => $request->name_wali,
                     'nik' => $request->nik_wali,
@@ -166,7 +166,7 @@ class StudentController extends Controller
                 'name' => $request->name,
                 'nisn' => $request->nisn,
                 'nik' => $request->nik,
-                'date_of_birth' => Carbon::parse("20-12-03"),
+                'date_of_birth' => Carbon::parse("20-12-03")->format('Y-m-d'),
                 'gender' => $request->gender,
                 'religion' => $request->religion,
                 'address' => $request->address,

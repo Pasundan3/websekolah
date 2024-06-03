@@ -275,7 +275,7 @@ class AdminController extends Controller
                     'name' => $request->name,
                     'nisn' => $request->nisn,
                     'nik' => $request->nik,
-                    'date_of_birth' => $date_of_birth_student->format('M d Y'),
+                    'date_of_birth' => $date_of_birth_student->format('Y-m-d'),
                     'gender' => $request->gender,
                     'religion' => $request->religion,
                     'address' => $request->address,
@@ -289,7 +289,7 @@ class AdminController extends Controller
             }
             // dd($request->name_ibu);
             if ($request->name_ibu){
-                $date_of_birth_ibu = Carbon::parse($request->date_of_birth_ibu);
+                $date_of_birth_ibu = Carbon::parse($request->date_of_birth_ibu)->format('Y-m-d');
                 try{
                     $mother = Family::create([
                         'name' => $request->name_ibu,
@@ -310,7 +310,7 @@ class AdminController extends Controller
                 }
             }
             if ($request->name_ayah){
-                $date_of_birth_ayah = Carbon::parse($request->date_of_birth_ayah);
+                $date_of_birth_ayah = Carbon::parse($request->date_of_birth_ayah)->format('Y-m-d');
                 try{
                     $father = Family::create([
                         'name' => $request->name_ayah,
@@ -331,7 +331,7 @@ class AdminController extends Controller
                 }
             }
             if ($request->name_wali){
-                $date_of_birth_wali = Carbon::parse($request->date_of_birth_wali);
+                $date_of_birth_wali = Carbon::parse($request->date_of_birth_wali)->format('Y-m-d');
                 try{
                     $wali = Family::create([
                         'name' => $request->name_wali,
