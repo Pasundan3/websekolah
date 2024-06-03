@@ -420,6 +420,7 @@ class AdminController extends Controller
 
             $data = Registration::where('registrations.registration_uid', $registration_uid)->with('payment_registration')->with('student')->first();
             if ($data->payment_registration->remaining_amount > 0){
+                // dd(1);
                 $payment_history = PaymentHistory::create([
                     'registration_id' => $data->id,
                     'pendaftaran' => $request->pendaftaran,
@@ -427,6 +428,8 @@ class AdminController extends Controller
                     'seragam' => $request->seragam,
                     'spp' => $request->spp,
                     'dsp' => $request->dsp,
+                    "image_url" => "",
+                    "receipt" => "default_value",
                     'amount' => $request->pendaftaran + $request->kegiatan_awal + $request->seragam + $request->spp + $request->dsp
                 ]);
                 

@@ -16,7 +16,8 @@ class PaymentHistory extends Model
         'kegiatan_awal',
         'seragam',
         'spp',
-        'dsp'
+        'dsp',
+        'receipt'
     ];
 
     public function registration(): BelongsTo
