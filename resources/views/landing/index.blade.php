@@ -25,9 +25,32 @@
          <div class="row  align-items-center">
              <!-- Welcome Thumb -->
              <div class="col-12 col-sm-12 col-md-12 text-center mb-5">
-                 <div class="welcome-thumb ms-xl-5">
+                 <!-- <div class="welcome-thumb ms-xl-5">
                     <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3" class="img-fluid mt-2" style="max-height:450px;">
+                </div> -->
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="welcome-thumb ms-xl-5">
+                                <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" class="img mt-2" style="max-height:450px" alt="Slide 1">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="welcome-thumb ms-xl-5">
+                                <img src="{{ asset('assets/(tambahin gambar dari folder public)') }}" class="d-block w-100" alt="Slide 2">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="welcome-thumb ms-xl-5">
+                                <img src="{{ asset('assets/(tambahin gambar dari folder public)') }}" class="d-block w-100" alt="Slide 2">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
+
+
              </div>
              <div class="col-12 col-sm-10 col-md-6 col-lg-4 mb-2">
                  <div class="card feature-card">
@@ -315,4 +338,13 @@
          </div>
      </div>
  </div>
+
+ <script>
+    // Auto rotate the carousel every 3 seconds
+    $(document).ready(function(){
+        $('#carouselExampleIndicators').carousel({
+            interval: 3000
+        });
+    });
+</script>
  @endsection

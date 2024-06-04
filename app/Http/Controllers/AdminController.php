@@ -423,21 +423,23 @@ class AdminController extends Controller
                 // dd(1);
                 $payment_history = PaymentHistory::create([
                     'registration_id' => $data->id,
-                    'pendaftaran' => $request->pendaftaran,
-                    'kegiatan_awal' => $request->kegiatan_awal,
-                    'seragam' => $request->seragam,
-                    'spp' => $request->spp,
-                    'dsp' => $request->dsp,
+                    'pendaftaran' => $request->pendaftaran ?? 0,
+                    'kegiatan_awal' => $request->kegiatan_awal ?? 0,
+                    'seragam' => $request->seragam ?? 0,
+                    'spp' => $request->spp ?? 0,
+                    'dsp' => $request->dsp ?? 0,
                     "image_url" => "",
                     "receipt" => "default_value",
                     'amount' => $request->pendaftaran + $request->kegiatan_awal + $request->seragam + $request->spp + $request->dsp
                 ]);
                 
                 $remaining_amount = $data->payment_registration->remaining_amount - ($request->pendaftaran + $request->kegiatan_awal + $request->seragam + $request->spp + $request->dsp);
+                $paid_amount = $data->paid_amount + ($request->pendaftaran + $request->kegiatan_awal + $request->seragam + $request->spp + $request->dsp);
                 if ($remaining_amount <= 0){
                     $data->payment_registration->remaining_amount = 0;
                 } 
                 $data->payment_registration->remaining_amount = $remaining_amount;
+                $data->payment_registration->paid_amount = $paid_amount;
                 $data->payment_registration->save();
                 $data->save();
 
@@ -654,7 +656,7 @@ class AdminController extends Controller
         // $user = User::where('id', auth()->id())->with('student')->with('student.registration')->first();
         $data = Registration::where('registration_uid', $registration_uid)->with('payment_registration')->with('payment_histories')->first();
         // dd($data);
-        return view('student.check-remaining-amount', ['data' => $data]);
+        return view('admin.check-remaining-amount', ['data' => $data]);
     }
 
 }

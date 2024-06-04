@@ -14,7 +14,8 @@ class PaymentRegistration extends Model
         'registration_id',
         'image_url',
         'amount',
-        'remaining_amount'
+        'remaining_amount',
+        'paid_amount'
     ];
 
     /**

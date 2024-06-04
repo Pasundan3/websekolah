@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('registration_id');
             $table->string('amount');
             $table->string('remaining_amount');
+            $table->string('paid_amount');
             $table->timestamps();
         });
     }
