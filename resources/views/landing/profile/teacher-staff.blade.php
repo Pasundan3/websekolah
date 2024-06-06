@@ -18,115 +18,26 @@
 <div class="mb-120 d-block"></div>
 <div class="container">
     <div class="row g-4 g-md-5 justify-content-center">
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card team-card shadow wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
-                <div class="card-body p-4 py-md-5">
-                    <div class="member-img mb-4 rounded-circle"><img src="{{asset('img/bg-img/9.jpg')}}" alt=""></div>
-                    <h6 class="text-center">L. Sarah</h6>
-                    <p class="fz-14">Creative Designer</p>
-                    <div class="border"></div>
-                    <ul class="list-unstyled mt-2">
-                        <li>
-                            <h6><i class="bi bi-telephone-fill mx-2"></i>+62 878 9889 8837</h6>
-                        </li>
-                        <li>
-                            <h6><i class="bi bi-envelope-at-fill mx-2"></i>custom@gmail.com</h6>
-                        </li>
-                    </ul>
+        @foreach($teachers as $x)
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card team-card shadow wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
+                    <div class="card-body p-4 py-md-5">
+                        <div class="member-img mb-4 rounded-circle"><img src="{{$x->image_url}}" alt=""></div>
+                        <h6 class="text-center">{{$x->name}}</h6>
+                        <p class="fz-14">{{$x->position}}</p>
+                        <p class="fz-16">{{$x->subject}}</p>
+                        <div class="border"></div>
+                        <ul class="list-unstyled mt-2">
+                            <li>
+                                <h6>NIP: {{$x->nip}}</h6>
+                            </li>
+                            
+                        </ul>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card team-card shadow wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
-                <div class="card-body p-4 py-md-5">
-                    <div class="member-img mb-4 rounded-circle"><img src="{{asset('img/bg-img/16.jpg')}}" alt=""></div>
-                    <h6 class="text-center">Hasnain R.</h6>
-                    <p class="fz-14">Motion Designer</p>
-                    <div class="border"></div>
-                    <ul class="list-unstyled mt-2">
-                        <li>
-                            <h6><i class="bi bi-telephone-fill mx-2"></i>+62 878 9889 8837</h6>
-                        </li>
-                        <li>
-                            <h6><i class="bi bi-envelope-at-fill mx-2"></i>custom@gmail.com</h6>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card team-card shadow wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
-                <div class="card-body p-4 py-md-5">
-                    <div class="member-img mb-4 rounded-circle"><img src="{{asset('img/bg-img/9.jpg')}}" alt=""></div>
-                    <h6 class="text-center">Ri. Nadim</h6>
-                    <p class="fz-14">Designer</p>
-                    <div class="border"></div>
-                    <ul class="list-unstyled mt-2">
-                        <li>
-                            <h6><i class="bi bi-telephone-fill mx-2"></i>+62 878 9889 8837</h6>
-                        </li>
-                        <li>
-                            <h6><i class="bi bi-envelope-at-fill mx-2"></i>custom@gmail.com</h6>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card team-card shadow wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
-                <div class="card-body p-4 py-md-5">
-                    <div class="member-img mb-4 rounded-circle"><img src="{{asset('img/bg-img/16.jpg')}}" alt=""></div>
-                    <h6 class="text-center">L. Sarah</h6>
-                    <p class="fz-14">Creative Designer</p>
-                    <div class="border"></div>
-                    <ul class="list-unstyled mt-2">
-                        <li>
-                            <h6><i class="bi bi-telephone-fill mx-2"></i>+62 878 9889 8837</h6>
-                        </li>
-                        <li>
-                            <h6><i class="bi bi-envelope-at-fill mx-2"></i>custom@gmail.com</h6>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card team-card shadow wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
-                <div class="card-body p-4 py-md-5">
-                    <div class="member-img mb-4 rounded-circle"><img src="{{asset('img/bg-img/9.jpg')}}" alt=""></div>
-                    <h6 class="text-center">L. Sarah</h6>
-                    <p class="fz-14">Creative Designer</p>
-                    <div class="border"></div>
-                    <ul class="list-unstyled mt-2">
-                        <li>
-                            <h6><i class="bi bi-telephone-fill mx-2"></i>+62 878 9889 8837</h6>
-                        </li>
-                        <li>
-                            <h6><i class="bi bi-envelope-at-fill mx-2"></i>custom@gmail.com</h6>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card team-card shadow wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
-                <div class="card-body p-4 py-md-5">
-                    <div class="member-img mb-4 rounded-circle"><img src="{{asset('img/bg-img/16.jpg')}}" alt=""></div>
-                    <h6 class="text-center">L. Sarah</h6>
-                    <p class="fz-14">Designer</p>
-                    <div class="border"></div>
-                    <ul class="list-unstyled mt-2">
-                        <li>
-                            <h6><i class="bi bi-telephone-fill mx-2"></i>+62 878 9889 8837</h6>
-                        </li>
-                        <li>
-                            <h6><i class="bi bi-envelope-at-fill mx-2"></i>custom@gmail.com</h6>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection

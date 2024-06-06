@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/all-css-libraries.css') }}">
         <!-- Core Stylesheet-->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        @yield('styles')
 
 
 

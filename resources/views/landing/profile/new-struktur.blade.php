@@ -1,8 +1,9 @@
-@extends('layouts.landing')
-@section('description', 'SMA PASUNDAN 3 adalah ....')
-@section('keywords','sman, sma bandung , bandung, sma negeri, sman, sma pasundan 3, sma pasundan, pasunan, negeri pasundan')
-
-@section('styles')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.8/css/jquery.orgchart.min.css" rel="stylesheet">
     <style>
@@ -30,40 +31,8 @@
             margin-top: 5px;
         }
     </style>
-@endsection
-
-@section('content')
-<!-- Breadcrumb Area-->
-<div class="breadcrumb-wrapper bg-img bg-overlay" style="background-image: url('{{asset('img/bg-img/7.jpg')}}');">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12">
-                <div class="breadcrumb-content">
-                    <h2 class="breadcrumb-title">Struktur Organisasi</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="mb-60 d-block"></div>
-<div class="container mt-5 text-center">
-    <div class="row align-item-center justify-content-center">
-        <div class="col-md-6 align-item-center">
-            <div class="aboutUs-thumbnail text-center mt-md-5"><img class="w-75" src="{{ asset('img/bg-img/5.jpg') }}" alt=""></div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
-                <div class="card feature-card">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="fea-text">
-                            <h6>KBP. DR. drg. NELSON SITUMORANG, Sb.B.M.M., Subsp.T.M.T.M.J (K)., MH.Kes</h6>
-                            <span>KARUMKIT BHAYANGKARA SARTIKA ASIH</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="mb-120 d-block"></div>
+</head>
+<body>
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
@@ -146,4 +115,5 @@
         });
     });
 </script>
-@endsection
+</body>
+</html>

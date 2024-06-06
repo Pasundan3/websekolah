@@ -210,45 +210,17 @@
      </div>
      <div class="container">
          <div class="row justify-content-center g-4 g-md-5 g-lg-4 g-xl-5">
+            @foreach($news as $x)
              <div class="col-12 col-sm-9 col-md-6 col-lg-3">
                  <div class="card blog-card border-0">
-                     <div class="image-wrap"><a class="d-block" href="{{ route('blog-with-id',1) }}"><img src="img/bg-img/blog1.jpg" alt=""></a></div>
+                     <div class="image-wrap"><a class="d-block" href="{{ route('blog-with-id',$x->id) }}"><img src="{{$x->gambar_header}}" alt=""></a></div>
                      <div class="card-body p-4 pb-2">
-                         <div class="post-meta d-flex align-items-center justify-content-between mb-3"><span class="fz-14"><i class="me-1 bi bi-calendar"></i>12 Sep 2022</span><span class="fz-14"><i class="me-1 bi bi-clock"></i>2 min read</span></div><a class="post-title d-block mb-3" href="{{ route('blog-with-id',1) }}">Seven ways agency can improve your business.</a>
-                         <p>It's crafted with the latest trend of design with all modern approaches.</p><a class="btn btn-primary btn-minimal" href="{{ route('blog-with-id',1) }}">Continue reading...</a>
+                        <a class="post-title d-block mb-3" href="{{ route('blog-with-id',$x->id) }}">{{$x->title}}</a>
+                         <a class="btn btn-primary btn-minimal" href="{{ route('blog-with-id',1) }}">Continue reading...</a>
                      </div>
                  </div>
              </div>
-             <div class="col-12 col-sm-9 col-md-6 col-lg-3">
-                 <div class="card blog-card border-0">
-                     <div class="image-wrap"><a class="d-block" href="{{ route('blog-with-id',1) }}"><img src="img/bg-img/blog2.jpg" alt=""></a>
-                         <!-- Video-->
-                         <div class="video-play-btn"><i class="bi bi-play"></i></div>
-                     </div>
-                     <div class="card-body p-4 pb-2">
-                         <div class="post-meta d-flex align-items-center justify-content-between mb-3"><span class="fz-14"><i class="me-1 bi bi-calendar"></i>12 Sep 2022</span><span class="fz-14"><i class="me-1 bi bi-clock"></i>2 min read</span></div><a class="post-title d-block mb-3" href="{{ route('blog-with-id',1) }}">The reason why everyone love business.</a>
-                         <p>It's crafted with the latest trend of design with all modern approaches.</p><a class="btn btn-primary btn-minimal" href="{{ route('blog-with-id',1) }}">Continue reading...</a>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-12 col-sm-9 col-md-6 col-lg-3">
-                 <div class="card blog-card border-0">
-                     <div class="image-wrap"><a class="d-block" href="{{ route('blog-with-id',1) }}"><img src="img/bg-img/blog3.jpg" alt=""></a></div>
-                     <div class="card-body p-4 pb-2">
-                         <div class="post-meta d-flex align-items-center justify-content-between mb-3"><span class="fz-14"><i class="me-1 bi bi-calendar"></i>12 Sep 2022</span><span class="fz-14"><i class="me-1 bi bi-clock"></i>2 min read</span></div><a class="post-title d-block mb-3" href="{{ route('blog-with-id',1) }}">Seven ways agency can improve your business.</a>
-                         <p>It's crafted with the latest trend of design with all modern approaches.</p><a class="btn btn-primary btn-minimal" href="{{ route('blog-with-id',1) }}">Continue reading...</a>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-12 col-sm-9 col-md-6 col-lg-3">
-                 <div class="card blog-card border-0">
-                     <div class="image-wrap"><a class="d-block" href="{{ route('blog-with-id',1) }}"><img src="img/bg-img/blog3.jpg" alt=""></a></div>
-                     <div class="card-body p-4 pb-2">
-                         <div class="post-meta d-flex align-items-center justify-content-between mb-3"><span class="fz-14"><i class="me-1 bi bi-calendar"></i>12 Sep 2022</span><span class="fz-14"><i class="me-1 bi bi-clock"></i>2 min read</span></div><a class="post-title d-block mb-3" href="{{ route('blog-with-id',1) }}">Seven ways agency can improve your business.</a>
-                         <p>It's crafted with the latest trend of design with all modern approaches.</p><a class="btn btn-primary btn-minimal" href="{{ route('blog-with-id',1) }}">Continue reading...</a>
-                     </div>
-                 </div>
-             </div>
+            @endforeach
          </div>
      </div>
  </div>

@@ -15,6 +15,11 @@
                             <div class="form-group">
                                 <label for="">Title</label>
                                 <input type="text" name="title" class="form-control">
+                                <!-- <textarea name="title" id="title"></textarea> -->
+                            </div>
+                            <div class="form-group">
+                                <label for="gambar_header">Image for title</label><br>
+                                <input type="file" name="gambar_header" id="gambar_header">
                             </div>
                             <div class="form-group">
                                 <label for="">Content</label>

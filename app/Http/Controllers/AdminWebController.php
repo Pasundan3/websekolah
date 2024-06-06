@@ -16,10 +16,28 @@ class AdminWebController extends Controller
         try{
             $request->validate([
                 'title' => 'required',
+                'gambar_header' => 'required',
                 'content' => 'required'
             ]);
-            News::create($request->all());
+
+            if ($request->hasFile('gambar_header')) {
+                $file = $request->file('gambar_header');
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileName = $fileName . '_' . time() . '.' . $file->getClientOriginalExtension();
+    
+                $file->move(public_path('uploads'), $fileName);
+
+                $url = asset('uploads/' . $fileName); 
+                $msg = 'Image uploaded successfully';   
+            }
+            News::create([
+                'title' => $request->input('title'),
+                'content' => $request->input('content'),
+                'gambar_header' => $url
+            ]);
+            @header('Content-type: text/html; charset=utf-8'); 
             return redirect()->back()->with('success', 'Create new post successfully');
+            
         }catch(\Exception $e){
             return redirect()->back()->withErrors(['error', $e->getMessage()]);
         }
@@ -34,6 +52,7 @@ class AdminWebController extends Controller
         try{
             $request->validate([
                 'title' => 'required',
+                'gambar_header' => 'required',
                 'content' => 'required'
             ]);
             $news = News::find($id);

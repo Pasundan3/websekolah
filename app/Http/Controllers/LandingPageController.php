@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
-
+use App\Models\Teacher;
 class LandingPageController extends Controller
 {
     public function index(){
-        return view('landing.index');
+        $news = News::orderBy('created_at', 'desc')->take(4)->get();
+        
+        return view('landing.index', compact('news'));
     }
 
     public function profile(){
@@ -21,10 +23,11 @@ class LandingPageController extends Controller
         return view('landing.profile.riwayat-kepsek');
     }
     public function struktur_organisasi(){
-        return view('landing.profile.stuktur-organisasi');
+        return view('landing.profile.new-struktur');
     }
     public function staff(){
-        return view('landing.profile.teacher-staff');
+        $teachers = Teacher::all();
+        return view('landing.profile.teacher-staff', compact('teachers'));
     }
     
     public function kontak(){
@@ -45,10 +48,12 @@ class LandingPageController extends Controller
     }
 
     public function blog(){
-        return view('landing.post.index');
+        $news = News::all();
+        return view('landing.post.index', compact('news'));
     }
     public function blog_with_id($id){
-        return view('landing.post.detail');
+        $newsItem = News::findOrFail($id);
+        return view('landing.post.detail', compact('newsItem'));
     }
 
     // news sub menu
