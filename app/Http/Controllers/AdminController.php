@@ -203,13 +203,34 @@ class AdminController extends Controller
         return Excel::download(new ExportStudents, 'student.xlsx');
     }
 
-    public function unverified_student_data(){
-        $data = Student::with('families')->with('registration')->where('verify_status', false)->whereExists(function ($query) {
-            $query->select('id')
-                  ->from('registrations')
-                  ->whereColumn('registrations.student_id', 'students.id');
-        })->get();
-        return view('admin.unverified-student', ['data' => $data]);
+    public function unverified_student_data(Request $request){
+        if ($request->ajax()){
+            $data = Student::with('families', 'registration')
+            ->where('verify_status', false)
+            ->whereExists(function ($query) {
+                $query->select('id')->from('registrations')
+                    ->whereColumn('registrations.student_id', 'students.id');
+            })->get();
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $registrationUid = $row->registration ? $row->registration->registration_uid : null;
+                        $btn = '<a href="' . route('admin.student_detail', ['registration_uid' => $registrationUid]) . '" class="btn btn-primary">View Details</a><br>
+                            <form action="' . route('admin.accept_reject_application', ['registration_uid' => $registrationUid, 'status' => 'accept']) . '" method="post">
+                                ' . csrf_field() . '
+                                <button type="submit" class="btn btn-secondary">Accept Registration</button>
+                            </form>
+                            <form action="' . route('admin.accept_reject_application', ['registration_uid' => $registrationUid, 'status' => 'reject']) . '" method="post">
+                                ' . csrf_field() . '
+                                <button type="submit" class="btn btn-danger">Reject Registration</button>
+                            </form>';
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin.unverified-student');
     }
 
     public function detail_student($registration_uid){
