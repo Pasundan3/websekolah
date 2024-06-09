@@ -115,9 +115,7 @@
                             'name': 'Guru', 
                             'title': 'Lead of Team 2.1',
                             'image': 'none',
-                            'children': [{ 'name': 'Wakasek Kesiswaan', 'title': 'Lead  of Team 2.4', 
-                                            'image': 'none',
-                                            'children': [{ 'name': 'Peserta Didik', 'title': 'Lead of Team 2.4', 'image': 'none' }]
+                            'children': [{'name': 'Peserta Didik', 'title': 'Lead of Team 2.4', 'image': 'none'
                                          }]
                         }
                     ]
