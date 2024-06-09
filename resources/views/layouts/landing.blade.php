@@ -28,6 +28,8 @@
 
         @include('components.landing.footer')
         <!-- All JavaScript Files-->
+        
+        @yield('script')
         <script src="{{ asset('assets/js/all-js-libraries.js') }}"></script>
         <script src="{{ asset('assets/js/active.js') }}"></script>
     </body>

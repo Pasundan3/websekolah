@@ -23,7 +23,7 @@ class LandingPageController extends Controller
         return view('landing.profile.riwayat-kepsek');
     }
     public function struktur_organisasi(){
-        return view('landing.profile.new-struktur');
+        return view('landing.profile.stuktur-organisasi');
     }
     public function staff(){
         $teachers = Teacher::all();

@@ -71,10 +71,14 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.8/js/jquery.orgchart.min.js"></script>
 <script>
-    $(function() {
+   
         var datasource = {
             'name': 'Kepala Sekolah',
             'title': 'Drs.W.Lesmana, M.M.Pdm M.Si',
@@ -91,14 +95,14 @@
                     'image': 'none',
                     'children': [
                         { 'name': 'Wakasek Kurikulum', 'title': 'Lead of Team 2.1', 'image': 'https://via.placeholder.com/50',
-                            'children': [{ 'name': 'Staf Wakasek Kurilum', 'title': '1. nyimas \n 2. milan', 'image': 'noneWithLabel' }]
+                            'children': [{ 'name': 'Staf Wakasek Kurikulum', 'title': '1. nyimas \n 2. milan', 'image': 'noneWithLabel' }]
                         },
                         { 'name': 'Wakasek Humas', 'title': 'Lead of Team 2.2', 'image': 'https://via.placeholder.com/50' },
                         { 'name': 'Wakasek Sarpras', 'title': 'Lead of Team 2.3', 'image': 'https://via.placeholder.com/50',
-                            'children': [{ 'name': 'Staf Wakasek Kurilum', 'title': 'Lead of Team 2.4', 'image': 'noneWithLabel' }]
+                            'children': [{ 'name': 'Staf Wakasek Kurikulum', 'title': 'Lead of Team 2.4', 'image': 'noneWithLabel' }]
                         },
                         {   'name': 'Wakasek Kesiswaan', 'title': 'Lead of Team 2.4', 'image': 'https://via.placeholder.com/50',
-                            'children': [{ 'name': 'Staf Wakasek Kurilum', 'title': 'Lead of Team 2.4', 'image': 'noneWithLabel' }]
+                            'children': [{ 'name': 'Staf Wakasek Kurikulum', 'title': 'Lead of Team 2.4', 'image': 'noneWithLabel' }]
                          }
                     ]
                 },
@@ -127,23 +131,22 @@
         };
 
         $('#chart-container').orgchart({
-            'data' : datasource,
+            'data': datasource,
             'nodeContent': 'title',
             'createNode': function($node, data) {
-                $node.children('.content').remove(); // Hapus konten default
+                $node.children('.content').remove(); // Remove default content
                 if (data.image === 'none') {
                     $node.append('<div class="content"></div>');
-                }if (data.image === 'noneWithLabel'){
-                    $node.append('<div class="content"> <div class="name">' + data.name + '</div></div>');
-
-                }
-                else{
+                } else if (data.image === 'noneWithLabel') {
+                    $node.append('<div class="content"><div class="name">' + data.name + '</div></div>');
+                } else {
                     $node.append('<div class="content"><img src="' + data.image + '" alt="Image"><div class="name">' + data.name + '</div></div>');
                 }
             },
             'pan': true,
             'zoom': true
         });
-    });
+   
+
 </script>
 @endsection

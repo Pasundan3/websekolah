@@ -28,25 +28,25 @@
                  <!-- <div class="welcome-thumb ms-xl-5">
                     <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3" class="img-fluid mt-2" style="max-height:450px;">
                 </div> -->
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="welcome-thumb ms-xl-5">
-                                <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" class="img mt-2" style="max-height:450px" alt="Slide 1">
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="welcome-thumb ms-xl-5">
-                                <img src="{{ asset('assets/(tambahin gambar dari folder public)') }}" class="d-block w-100" alt="Slide 2">
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="welcome-thumb ms-xl-5">
-                                <img src="{{ asset('assets/(tambahin gambar dari folder public)') }}" class="d-block w-100" alt="Slide 2">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                     <div class="carousel-inner">
+                         <div class="carousel-item active">
+                             <div class="welcome-thumb ms-xl-5">
+                                 <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" class="img mt-2" style="max-height:450px" alt="Slide 1">
+                             </div>
+                         </div>
+                         <div class="carousel-item">
+                             <div class="welcome-thumb ms-xl-5">
+                                 <img src="{{ asset('assets/(tambahin gambar dari folder public)') }}" class="d-block w-100" alt="Slide 2">
+                             </div>
+                         </div>
+                         <div class="carousel-item">
+                             <div class="welcome-thumb ms-xl-5">
+                                 <img src="{{ asset('assets/(tambahin gambar dari folder public)') }}" class="d-block w-100" alt="Slide 2">
+                             </div>
+                         </div>
+                     </div>
+                 </div>
 
 
 
@@ -153,7 +153,8 @@
              <!-- Welcome Thumb -->
              <div class="col-12 col-sm-9 col-md-4">
                  <div class="welcome-thumb ms-xl-2 wow">
-                    <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3"></div>
+                     <img src="{{ asset('assets/images/sma_simpenan_3_bdg.webp') }}" alt="sma pasundan 3">
+                 </div>
              </div>
              <!-- Welcome Content -->
              <div class="col-12 col-sm-10 col-md-7">
@@ -210,17 +211,17 @@
      </div>
      <div class="container">
          <div class="row justify-content-center g-4 g-md-5 g-lg-4 g-xl-5">
-            @foreach($news as $x)
+             @foreach($news as $x)
              <div class="col-12 col-sm-9 col-md-6 col-lg-3">
                  <div class="card blog-card border-0">
                      <div class="image-wrap"><a class="d-block" href="{{ route('blog-with-id',$x->id) }}"><img src="{{$x->gambar_header}}" alt=""></a></div>
                      <div class="card-body p-4 pb-2">
-                        <a class="post-title d-block mb-3" href="{{ route('blog-with-id',$x->id) }}">{{$x->title}}</a>
+                         <a class="post-title d-block mb-3" href="{{ route('blog-with-id',$x->id) }}">{{$x->title}}</a>
                          <a class="btn btn-primary btn-minimal" href="{{ route('blog-with-id',1) }}">Continue reading...</a>
                      </div>
                  </div>
              </div>
-            @endforeach
+             @endforeach
          </div>
      </div>
  </div>
@@ -312,11 +313,11 @@
  </div>
 
  <script>
-    // Auto rotate the carousel every 3 seconds
-    $(document).ready(function(){
-        $('#carouselExampleIndicators').carousel({
-            interval: 3000
-        });
-    });
-</script>
+     // Auto rotate the carousel every 3 seconds
+     $(document).ready(function() {
+         $('#carouselExampleIndicators').carousel({
+             interval: 3000
+         });
+     });
+ </script>
  @endsection
